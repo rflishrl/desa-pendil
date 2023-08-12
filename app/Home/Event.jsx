@@ -68,9 +68,9 @@ const Event = () => {
               <h1 className="flex lg:justify-start lg:pl-8 sm:text-3xl text-3xl font-bold justify-center">
                 Agenda Hari Ini
               </h1>
-              <h1 className="flex lg:justify-start lg:pl-8 sm:text-lg text-lg font-bold justify-center">
+              <h2 className="flex lg:justify-start lg:pl-8 sm:text-lg text-lg font-bold justify-center">
                 Kamis, 27 Juni 2023
-              </h1>
+              </h2>
             </div>
             <div className="flex w-full lg:w-1/2 lg:pr-8 justify-center sm:justify-end items-end mt-4 sm:mt-0">
               <button className="inline-flex items-center py-3 px-5 ml-2 text-base font-semibold text-black  rounded-lg border-2 border-black hover:border-gray-300 hover:bg-gray-300 hover:text-white">
