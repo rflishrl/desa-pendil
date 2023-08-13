@@ -1,11 +1,11 @@
 import Hero from "./Home/Hero";
 import News from "./Home/News";
-import VillageHead from "./Home/VillageHead";
+import VillageHead from "./Home/Leader";
 import { Montserrat } from "@next/font/google";
-import VillageApparatus from "./Home/VillageApparatus";
+import VillageApparatus from "./Home/Structural";
 import Event from "./Home/Event";
 import VillageData from "./Home/VillageData";
-import Excellence from "./Home/Excellence";
+import Excellence from "./Home/Advantage";
 import Culture from "./Home/Culture";
 
 const montserrat = Montserrat({

@@ -4,10 +4,10 @@ import {
   MdHealthAndSafety,
   MdOutlineLocationCity,
 } from "react-icons/md";
-import ExcellList from "@/components/Cards/ExcellList";
+import AdvanList from "@/components/Cards/AdvanList";
 
-const Excellence = () => {
-  const ExcellData = [
+const Advantage = () => {
+  const InfoData = [
     {
       icon: <MdFamilyRestroom />,
       title: "Desa adiwiyata",
@@ -34,10 +34,10 @@ const Excellence = () => {
         <h1 className="sm:text-3xl text-3xl font-bold">Keunggulan</h1>
       </div>
       <div className="excellence-list">
-        <ExcellList data={ExcellData} />
+        <AdvanList data={InfoData} />
       </div>
     </div>
   );
 };
 
-export default Excellence;
+export default Advantage;

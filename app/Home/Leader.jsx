@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const VillageHead = () => {
+const Leader = () => {
   return (
     <div className="container mx-auto flex lg:px-60 px-5 py-24 md:flex-row flex-col items-center">
       <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
@@ -30,4 +30,4 @@ const VillageHead = () => {
   );
 };
 
-export default VillageHead;
+export default Leader;

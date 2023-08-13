@@ -1,6 +1,6 @@
 import React from "react";
 
-const ExcellCard = ({ icon, title, description }) => {
+const AdvanCard = ({ icon, title, description }) => {
   return (
     <div className="p-4 md:w-1/3">
       <div className="flex rounded-lg h-full bg-white shadow-lg p-8 flex-col">
@@ -18,4 +18,4 @@ const ExcellCard = ({ icon, title, description }) => {
   );
 };
 
-export default ExcellCard;
+export default AdvanCard;

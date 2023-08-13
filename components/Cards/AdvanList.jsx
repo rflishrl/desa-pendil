@@ -1,11 +1,11 @@
 import React from "react";
-import ExcellCard from "./ExcellCard";
+import AdvanCard from "./AdvanCard";
 
-const ExcellList = ({ data }) => {
+const AdvanList = ({ data }) => {
   return (
     <div className="flex flex-wrap -m-4">
       {data.map((data, index) => (
-        <ExcellCard
+        <AdvanCard
           key={index}
           icon={data.icon}
           title={data.title}
@@ -16,4 +16,4 @@ const ExcellList = ({ data }) => {
   );
 };
 
-export default ExcellList;
+export default AdvanList;

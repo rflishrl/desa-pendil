@@ -24,7 +24,7 @@ const PeopleData = [
   },
 ];
 
-const VillageApparatus = () => {
+const Structural = () => {
   return (
     <div className="container">
       <div className="lg:py-12 bg-white sm:bg-none rounded-2xl lg:mx-32 mx-8 shadow-2xl sm:shadow-none">
@@ -43,4 +43,4 @@ const VillageApparatus = () => {
   );
 };
 
-export default VillageApparatus;
+export default Structural;
