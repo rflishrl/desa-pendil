@@ -3,7 +3,7 @@ import React from "react";
 import ButtonMore from "@/components/Buttons/ButtonMore";
 import CardList from "@/components/Cards/CardList";
 
-const NewsData = [
+const ArticleData = [
   {
     title: "Kegiatan Posyandu Remaja Desa Pendil...",
     image: "/images/dummy-news.jpg",
@@ -24,7 +24,7 @@ const NewsData = [
   },
 ];
 
-const News = () => {
+const Article = () => {
   return (
     <div className="container">
       <div className="lg:py-12 bg-white rounded-2xl lg:mx-32 mx-8 shadow-2xl">
@@ -39,11 +39,11 @@ const News = () => {
           </div>
         </div>
         <div className="news-list">
-          <CardList data={NewsData} />
+          <CardList data={ArticleData} />
         </div>
       </div>
     </div>
   );
 };
 
-export default News;
+export default Article;

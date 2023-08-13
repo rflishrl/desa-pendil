@@ -1,12 +1,12 @@
-import Hero from "./Home/Hero";
-import News from "./Home/News";
-import VillageHead from "./Home/Leader";
 import { Montserrat } from "@next/font/google";
-import VillageApparatus from "./Home/Structural";
+import Hero from "./Home/Hero";
 import Event from "./Home/Event";
 import VillageData from "./Home/VillageData";
 import Excellence from "./Home/Advantage";
 import Culture from "./Home/Culture";
+import Structural from "./Home/Structural";
+import Leader from "./Home/Leader";
+import Article from "./Home/Article";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -17,9 +17,9 @@ export default function Home() {
   return (
     <main className={montserrat.className}>
       <Hero />
-      <News />
-      <VillageHead />
-      <VillageApparatus />
+      <Article />
+      <Leader />
+      <Structural />
       <Event />
       <VillageData />
       <Excellence />
