@@ -101,7 +101,7 @@ const Footer = () => {
       </div>
       <div className="bg-amber-500 mt-10 py-5">
         <p className="text-center text-white">
-          © Brand 2020 - All rights reserved
+          © Ciboox 2023 - All rights reserved
         </p>
       </div>
     </footer>
