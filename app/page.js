@@ -5,6 +5,8 @@ import { Montserrat } from "@next/font/google";
 import VillageApparatus from "./Home/VillageApparatus";
 import Event from "./Home/Event";
 import VillageData from "./Home/VillageData";
+import Excellence from "./Home/Excellence";
+import Culture from "./Home/Culture";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -20,6 +22,8 @@ export default function Home() {
       <VillageApparatus />
       <Event />
       <VillageData />
+      <Excellence />
+      <Culture />
     </main>
   );
 }

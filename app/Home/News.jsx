@@ -38,10 +38,8 @@ const News = () => {
             <ButtonMore />
           </div>
         </div>
-        <div className="flex flex-wrap lg:mx-10 justify-center items-center">
-          <div className="news-list">
-            <CardList data={NewsData} />
-          </div>
+        <div className="news-list">
+          <CardList data={NewsData} />
         </div>
       </div>
     </div>

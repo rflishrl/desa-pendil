@@ -35,10 +35,8 @@ const VillageApparatus = () => {
             </h1>
           </div>
         </div>
-        <div className="flex flex-wrap lg:mx-10 justify-center items-center">
-          <div className="people-list">
-            <PeopleList data={PeopleData} />
-          </div>
+        <div className="people-list">
+          <PeopleList data={PeopleData} />
         </div>
       </div>
     </div>
