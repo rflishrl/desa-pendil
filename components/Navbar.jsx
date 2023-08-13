@@ -2,21 +2,21 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars2Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="relative isolate bg-black bg-opacity-20">
-      <nav
-        className="mx-auto flex max-w-7xl items-end justify-between p-6 lg:px-8"
-        aria-label="Global"
-      >
+      <nav className="mx-auto flex max-w-7xl items-end justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#" className="flex items-center p-1.5">
+          <Link href="/Home" className="flex items-center p-1.5">
             <img className="h-8 w-auto" src="images/dummy-logo.png" alt="" />
-            <p className="ml-2 text-white text-lg font-bold italic">Desa Pendil</p>
-          </a>
+            <p className="ml-2 text-white text-lg font-bold italic">
+              Desa Pendil
+            </p>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -29,18 +29,30 @@ const Navbar = () => {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 ">
+          <Link
+            href="/"
+            className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
+          >
             Beranda
-          </a>
-          <a href="#" className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 ">
+          </Link>
+          <a
+            href="/Article"
+            className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
+          >
             Berita Desa
           </a>
-          <a href="#" className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 ">
+          <Link
+            href="/"
+            className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
+          >
             Layanan Publik
-          </a>
-          <a href="#" className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 ">
+          </Link>
+          <Link
+            href="/"
+            className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
+          >
             Profil Desa
-          </a>
+          </Link>
         </div>
       </nav>
       <Dialog

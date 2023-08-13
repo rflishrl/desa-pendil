@@ -76,7 +76,7 @@ const Footer = () => {
               <div>
                 <h3 className="text-lg font-bold mb-4">Berita Desa Pendil</h3>
                 <nav className="list-none">
-                  <FooterLink text="Semua Berita" link="#" />
+                  <FooterLink text="Semua Berita" link="/Article" />
                 </nav>
               </div>
               <div>
@@ -100,7 +100,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="bg-amber-500 mt-10 py-5">
-        <p className="text-center text-white">
+        <p className="text-center text-white text-sm">
           © Ciboox 2023 - All rights reserved
         </p>
       </div>
