@@ -42,13 +42,13 @@ const Navbar = () => {
             Berita Desa
           </a>
           <Link
-            href="/"
+            href="/Service"
             className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
           >
             Layanan Publik
           </Link>
           <Link
-            href="/"
+            href="/Profile"
             className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
           >
             Profil Desa
@@ -82,30 +82,34 @@ const Navbar = () => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                <a
-                  href="#"
+                <Link
+                  href="/"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Beranda
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="/Article"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Berita Desa
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="/Service"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Layanan Publik
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="/Profile"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Profil Desa Pendil
-                </a>
+                </Link>
               </div>
             </div>
           </div>

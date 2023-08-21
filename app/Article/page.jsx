@@ -45,10 +45,10 @@ const ArticlePage = () => {
   return (
     <div>
       <Image
-        className="absolute inset-0 -z-10 w-full"
-        src="/images/bg-image.jpg"
-        width={1000}
-        height={0}
+        className="absolute -z-10 pb-[200px] lg:pb-[300px]"
+        src="/images/bg-hero.jpg"
+        layout="fill"
+        objectFit="cover"
         alt=""
       />
       <div className="container mx-auto flex lg:px-60 px-5 py-14 md:flex-row flex-col items-center">
@@ -65,7 +65,7 @@ const ArticlePage = () => {
         </div>
       </div>
       <div className="container pb-24">
-        <div className="lg:py-12 bg-white rounded-2xl lg:mx-32 mx-8 shadow-2xl">
+        <div className="lg:pt-12 pb-14 sm:pb-12 bg-white rounded-2xl lg:mx-32 mx-8 shadow-2xl">
           <div className="flex flex-col items-center w-full mb-10 sm:flex-row sm:justify-between pt-12 sm:pt-0">
             <div className="lg:w-1/2 w-full lg:mb-0">
               <h1 className="flex lg:justify-start lg:pl-20 sm:text-3xl text-3xl font-bold justify-center">

@@ -11,7 +11,10 @@ module.exports = {
         "primary-orange": "#F0A400",
       },
       backgroundImage: {
-        "bg-hero": "url('/images/bg-hero.jpg')",
+        "bg-container": "url('/images/bg-event.png')",
+      },
+      fontFamily: {
+        sans: ["var(--font-montserrat)"],
       },
     },
   },
