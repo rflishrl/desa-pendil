@@ -26,25 +26,25 @@ const StatData = [
 ];
 
 const InfoData = [
-    {
-      icon: <MdFamilyRestroom />,
-      title: "Desa adiwiyata",
-      description:
-        "Our aim is to provide cost-effective and top-notch services for web and mobile application development.",
-    },
-    {
-      icon: <MdHealthAndSafety />,
-      title: "Desa adiwiyata",
-      description:
-        "Our aim is to provide cost-effective and top-notch services for web and mobile application development.",
-    },
-    {
-      icon: <MdOutlineLocationCity />,
-      title: "Desa adiwiyata",
-      description:
-        "Our aim is to provide cost-effective and top-notch services for web and mobile application development.",
-    },
-  ];
+  {
+    icon: <MdFamilyRestroom />,
+    title: "Desa adiwiyata",
+    description:
+      "Our aim is to provide cost-effective and top-notch services for web and mobile application development.",
+  },
+  {
+    icon: <MdHealthAndSafety />,
+    title: "Desa adiwiyata",
+    description:
+      "Our aim is to provide cost-effective and top-notch services for web and mobile application development.",
+  },
+  {
+    icon: <MdOutlineLocationCity />,
+    title: "Desa adiwiyata",
+    description:
+      "Our aim is to provide cost-effective and top-notch services for web and mobile application development.",
+  },
+];
 
 const Service = () => {
   return (
@@ -104,7 +104,7 @@ const Service = () => {
           </div>
           <div className="data-list">
             <div>
-              <h1 className="flex lg:justify-start lg:pl-5 lg:pt-16 sm:text-xl text-xl font-bold justify-center">
+              <h1 className="flex lg:justify-start md:mt-0 mt-10 lg:pl-5 lg:pt-16 sm:text-xl text-xl font-bold justify-center">
                 Dusun B
               </h1>
             </div>
@@ -112,7 +112,7 @@ const Service = () => {
           </div>
           <div className="data-list">
             <div>
-              <h1 className="flex lg:justify-start lg:pl-5 lg:pt-16 sm:text-xl text-xl font-bold justify-center">
+              <h1 className="flex lg:justify-start md:mt-0 mt-10 lg:pl-5 lg:pt-16 sm:text-xl text-xl font-bold justify-center">
                 Dusun C
               </h1>
             </div>
@@ -129,7 +129,7 @@ const Service = () => {
               </h1>
             </div>
           </div>
-          <div className="flex flex-wrap -m-4">
+          <div className="flex flex-wrap -m-4 justify-center">
             <div className="md:w-1/4 w-3/4 p-2">
               <div className="rounded-lg shadow-lg">
                 <Image

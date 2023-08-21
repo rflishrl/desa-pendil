@@ -74,13 +74,13 @@ const Footer = () => {
           <div className="mt-14 lg:mt-0 lg:flex-1">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
               <div>
-                <h3 className="text-lg font-bold mb-4">Berita Desa Pendil</h3>
+                <h3 className="text-lg font-bold text-amber-500 mb-4">Berita Desa Pendil</h3>
                 <nav className="list-none">
                   <FooterLink text="Semua Berita" link="/Article" />
                 </nav>
               </div>
               <div>
-                <h3 className="text-lg font-bold mb-4">Layanan Publik</h3>
+                <h3 className="text-lg font-bold text-amber-500 mb-4">Layanan Publik</h3>
                 <nav className="list-none">
                   {footerLinks.slice(0, 2).map((link, index) => (
                     <FooterLink key={index} text={link.text} link={link.link} />
@@ -88,7 +88,7 @@ const Footer = () => {
                 </nav>
               </div>
               <div>
-                <h3 className="text-lg font-bold mb-4">Profil Desa</h3>
+                <h3 className="text-lg font-bold text-amber-500 mb-4">Profil Desa</h3>
                 <nav className="list-none">
                   {footerLinks.slice(2).map((link, index) => (
                     <FooterLink key={index} text={link.text} link={link.link} />
