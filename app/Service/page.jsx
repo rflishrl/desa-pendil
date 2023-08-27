@@ -25,27 +25,6 @@ const StatData = [
   },
 ];
 
-const InfoData = [
-  {
-    icon: <MdFamilyRestroom />,
-    title: "Desa adiwiyata",
-    description:
-      "Our aim is to provide cost-effective and top-notch services for web and mobile application development.",
-  },
-  {
-    icon: <MdHealthAndSafety />,
-    title: "Desa adiwiyata",
-    description:
-      "Our aim is to provide cost-effective and top-notch services for web and mobile application development.",
-  },
-  {
-    icon: <MdOutlineLocationCity />,
-    title: "Desa adiwiyata",
-    description:
-      "Our aim is to provide cost-effective and top-notch services for web and mobile application development.",
-  },
-];
-
 const Service = () => {
   return (
     <div>
