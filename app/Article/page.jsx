@@ -2,46 +2,19 @@ import React from "react";
 import Image from "next/image";
 import CardList from "@/components/Cards/CardList";
 
-const ArticleData = [
-  {
-    title: "Kegiatan Posyandu Remaja Desa Pendil...",
-    image: "/images/dummy-news.jpg",
-    category: "Sosial",
-    date: "Selasa, 22 Juli 2023 | Author Web",
-  },
-  {
-    title: "Kegiatan Posyandu Remaja Desa Pendil...",
-    image: "/images/dummy-news.jpg",
-    category: "Sosial",
-    date: "Selasa, 22 Juli 2023 | Author Web",
-  },
-  {
-    title: "Kegiatan Posyandu Remaja Desa Pendil...",
-    image: "/images/dummy-news.jpg",
-    category: "Sosial",
-    date: "Selasa, 22 Juli 2023 | Author Web",
-  },
-  {
-    title: "Kegiatan Posyandu Remaja Desa Pendil...",
-    image: "/images/dummy-news.jpg",
-    category: "Sosial",
-    date: "Selasa, 22 Juli 2023 | Author Web",
-  },
-  {
-    title: "Kegiatan Posyandu Remaja Desa Pendil...",
-    image: "/images/dummy-news.jpg",
-    category: "Sosial",
-    date: "Selasa, 22 Juli 2023 | Author Web",
-  },
-  {
-    title: "Kegiatan Posyandu Remaja Desa Pendil...",
-    image: "/images/dummy-news.jpg",
-    category: "Sosial",
-    date: "Selasa, 22 Juli 2023 | Author Web",
-  },
-];
+async function getArticle() {
+  const res = await fetch("https://api-web-desa-pendil.vercel.app/v1/news");
 
-const ArticlePage = () => {
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+const ArticlePage = async () => {
+  const article = await getArticle();
+
   return (
     <div>
       <Image
@@ -74,7 +47,7 @@ const ArticlePage = () => {
             </div>
           </div>
           <div className="news-list">
-            <CardList data={ArticleData} />
+            <CardList data={article.data} />
           </div>
         </div>
       </div>
