@@ -21,7 +21,7 @@ const Navbar = () => {
     <header className="relative isolate bg-black bg-opacity-20">
       <nav className="mx-auto flex max-w-7xl items-end justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <Link href="/Home" className="flex items-center p-1.5">
+          <Link href="/" className="flex items-center p-1.5">
             <p className="ml-2 text-white text-lg text-opacity-90 font-black">
               Desa Pendil
             </p>
