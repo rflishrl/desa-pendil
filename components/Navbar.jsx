@@ -3,17 +3,26 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars2Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const pathname = usePathname();
+
+  const navbarList = [
+    { id: 1, content: "Beranda", pathname: "/" },
+    { id: 2, content: "Berita Desa", pathname: "/article" },
+    { id: 3, content: "Layanan Publik", pathname: "/services" },
+    { id: 4, content: "Profil Desa", pathname: "/profile" },
+  ];
 
   return (
     <header className="relative isolate bg-black bg-opacity-20">
       <nav className="mx-auto flex max-w-7xl items-end justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <Link href="/Home" className="flex items-center p-1.5">
-            <img className="h-8 w-auto" src="images/dummy-logo.png" alt="" />
-            <p className="ml-2 text-white text-lg font-bold italic">
+            <p className="ml-2 text-white text-lg text-opacity-90 font-black">
               Desa Pendil
             </p>
           </Link>
@@ -29,30 +38,21 @@ const Navbar = () => {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          <Link
-            href="/"
-            className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
-          >
-            Beranda
-          </Link>
-          <a
-            href="/Article"
-            className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
-          >
-            Berita Desa
-          </a>
-          <Link
-            href="/Service"
-            className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
-          >
-            Layanan Publik
-          </Link>
-          <Link
-            href="/Profile"
-            className="rounded-lg px-3 py-2 text-white text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 "
-          >
-            Profil Desa
-          </Link>
+          {navbarList.map((item) => {
+            return (
+              <Link
+                key={item.id}
+                href={item.pathname}
+                className={`rounded-lg px-3 py-2 text-base font-semibold hover:text-amber-500 hover:bg-white hover:bg-opacity-10 ${
+                  pathname === item.pathname
+                    ? "text-amber-500 bg-white bg-opacity-10"
+                    : "text-white"
+                }`}
+              >
+                {item.content}
+              </Link>
+            );
+          })}
         </div>
       </nav>
       <Dialog
@@ -82,34 +82,18 @@ const Navbar = () => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                <Link
-                  href="/"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Beranda
-                </Link>
-                <Link
-                  href="/Article"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Berita Desa
-                </Link>
-                <Link
-                  href="/Service"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Layanan Publik
-                </Link>
-                <Link
-                  href="/Profile"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Profil Desa Pendil
-                </Link>
+                {navbarList.map((item) => {
+                  return (
+                    <Link
+                      key={item.id}
+                      href={item.pathname}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      {item.content}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>

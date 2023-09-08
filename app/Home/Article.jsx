@@ -1,30 +1,23 @@
-"use client";
 import React from "react";
 import ButtonMore from "@/components/Buttons/ButtonMore";
-import CardList from "@/components/Cards/CardList";
+import Card from "@/components/Cards/ArticleCard";
+import axios from "axios";
 
-const ArticleData = [
-  {
-    title: "Kegiatan Posyandu Remaja Desa Pendil...",
-    image: "/images/dummy-news.jpg",
-    category: "Sosial",
-    date: "Selasa, 22 Juli 2023 | Author Web",
-  },
-  {
-    title: "Kegiatan Posyandu Remaja Desa Pendil...",
-    image: "/images/dummy-news.jpg",
-    category: "Sosial",
-    date: "Selasa, 22 Juli 2023 | Author Web",
-  },
-  {
-    title: "Kegiatan Posyandu Remaja Desa Pendil...",
-    image: "/images/dummy-news.jpg",
-    category: "Sosial",
-    date: "Selasa, 22 Juli 2023 | Author Web",
-  },
-];
+async function getArticle() {
+  const { data, error } = await axios.get(
+    "https://api-web-desa-pendil.vercel.app/v1/news"
+  );
 
-const Article = () => {
+  console.log(error);
+
+  return data;
+}
+
+const Article = async () => {
+  const article = await getArticle();
+
+  console.log(article);
+
   return (
     <div className="container">
       <div className="lg:pt-12 pb-14 sm:pb-12 bg-white rounded-2xl lg:mx-32 mx-8 shadow-2xl">
@@ -38,8 +31,17 @@ const Article = () => {
             <ButtonMore />
           </div>
         </div>
-        <div className="news-list">
-          <CardList data={ArticleData} />
+        <div className="flex flex-wrap lg:mx-10 justify-center items-center">
+          {article.data.slice(0, 3).map((item) => {
+            return (
+              <Card
+                key={item.id}
+                title={item.judul}
+                date={item.createdAt}
+                image={item.thumbnail}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

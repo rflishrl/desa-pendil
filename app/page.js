@@ -1,11 +1,11 @@
-import Hero from "./Home/Hero";
-import Event from "./Home/Event";
-import VillageData from "./Home/VillageData";
-import Excellence from "./Home/Advantage";
-import Culture from "./Home/Culture";
-import Structural from "./Home/Structural";
-import Leader from "./Home/Leader";
-import Article from "./Home/Article";
+import Hero from "./home/Hero";
+import Event from "./home/Event";
+import VillageData from "./home/VillageData";
+import Excellence from "./home/Advantage";
+import Culture from "./home/Culture";
+import Structural from "./home/Structural";
+import Leader from "./home/Leader";
+import Article from "./home/Article";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({

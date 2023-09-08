@@ -1,25 +1,28 @@
 import React from "react";
 import Image from "next/image";
-import CardList from "@/components/Cards/CardList";
+import Card from "@/components/Cards/ArticleCard";
+import axios from "axios";
 
 async function getArticle() {
-  const res = await fetch("https://api-web-desa-pendil.vercel.app/v1/news");
+  const { data, error } = await axios.get(
+    "https://api-web-desa-pendil.vercel.app/v1/news"
+  );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+  console.log(error);
 
-  return res.json();
+  return data;
 }
 
 const ArticlePage = async () => {
   const article = await getArticle();
 
+  console.log(article);
+
   return (
     <div>
       <Image
         className="absolute -z-10 pb-[200px] lg:pb-[300px]"
-        src="/images/bg-hero.jpg"
+        src="/images/bg-hero-new.jpg"
         layout="fill"
         objectFit="cover"
         alt=""
@@ -46,8 +49,17 @@ const ArticlePage = async () => {
               </h1>
             </div>
           </div>
-          <div className="news-list">
-            <CardList data={article.data} />
+          <div className="flex flex-wrap lg:mx-10 justify-center items-center">
+            {article.data.slice(0, 6).map((item) => {
+              return (
+                <Card
+                  key={item.id}
+                  title={item.judul}
+                  date={item.createdAt}
+                  image={item.thumbnail}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

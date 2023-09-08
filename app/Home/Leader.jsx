@@ -7,16 +7,20 @@ const Leader = () => {
       <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
         <Image
           className="rounded-lg"
-          src="/images/dummy-profile.jpg"
-          width={1000}
-          height={1000}
+          src="/images/image-leader.jpg"
+          width={400}
+          height={50}
           alt=""
         />
       </div>
-      <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+      <div className="lg:flex-grow md:w-1/2 lg:pl-1 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
         <h2 className="text-lg font-semibold mb-2">Sambutan</h2>
-        <h1 className="title-font sm:text-3xl text-3xl mb-4 font-bold">
+        <h1 className="sm:text-3xl text-3xl mb-4 font-bold">
           Kepala Desa
+          <span className="sm:text-3xl text-3xl mb-4 font-bold text-amber-500">
+            {" "}
+            H. Machfuds
+          </span>
         </h1>
         <p>
           Lörem ipsum låbel minidator, tesade bese telestat. Krosat. Sysäst man.

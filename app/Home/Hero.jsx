@@ -1,19 +1,19 @@
 import React from "react";
 import Image from "next/image";
 import { MdSearch } from "react-icons/md";
-import Buttons from "@/components/Buttons/Buttons";
+import Buttons from "@/components/Buttons/Button";
 
 const Hero = () => {
   return (
     <div>
       <Image
         className="absolute inset-0 -z-10"
-        src="/images/bg-hero.jpg"
+        src="/images/bg-hero-new.jpg"
         layout="fill"
         objectFit="cover"
         alt=""
       />
-      <div className="container mx-auto flex lg:px-60 px-5 py-24 md:flex-row flex-col items-center">
+      <div className="container mx-auto flex lg:px-60 px-5 py-24 md:flex-row flex-col items-center ">
         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start text-left mb-16 md:mb-0 items-center">
           <h1 className="sm:w-[709px] mb-[60px] text-white sm:text-3xl text-2xl font-bold uppercase">
             Menjawab Kebutuhan Informasi Publik warga desa Pendil

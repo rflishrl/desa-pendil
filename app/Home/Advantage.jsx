@@ -4,7 +4,7 @@ import {
   MdHealthAndSafety,
   MdOutlineLocationCity,
 } from "react-icons/md";
-import AdvanList from "@/components/Cards/AdvanList";
+import AdvantageList from "@/components/Cards/AdvantageList";
 
 const Advantage = () => {
   const InfoData = [
@@ -34,7 +34,7 @@ const Advantage = () => {
         <h1 className="sm:text-3xl text-3xl font-bold">Keunggulan</h1>
       </div>
       <div className="excellence-list">
-        <AdvanList data={InfoData} />
+        <AdvantageList data={InfoData} />
       </div>
     </div>
   );
