@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Web Desa Pendil
 
-## Getting Started
+Website informasi publik Desa Pendil. Next.js (App Router) + TypeScript + Tailwind CSS.
 
-First, run the development server:
+## Menjalankan
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+yarn install
+cp .env.example .env.local   # opsional
+yarn dev                     # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Skrip lain: `yarn build`, `yarn start`, `yarn lint`, `yarn typecheck`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Struktur
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+src/
+  app/          route (/, /article, /services, /profile, /gallery), layout, error, 404
+  components/
+    layout/     Navbar, Footer
+    ui/         Button, Container, Panel, PageHero, SectionHeading, ...
+    cards/      ArticleCard, OfficialCard, StatCard, ...
+  sections/     bagian halaman yang dipakai ulang
+  data/         konten statis (placeholder)
+  config/       navigasi, info situs
+  lib/          api, format tanggal, helper gambar
+  types/        tipe TypeScript bersama
+```
 
-## Learn More
+## Desain
 
-To learn more about Next.js, take a look at the following resources:
+Token desain (warna, bayangan, gradient hero, font Montserrat) berasal dari Figma
+"Web Desa" dan ada di `tailwind.config.ts`. Layout mobile-first untuk 375px sampai desktop lebar.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Berita diambil dari `API_BASE_URL` (lihat `.env.example`) dan di-cache 1 jam.
+Jika API gagal, halaman menampilkan keadaan kosong, bukan error.
+Data desa, perangkat, keunggulan, dan kesenian masih placeholder di `src/data/village.ts`.
