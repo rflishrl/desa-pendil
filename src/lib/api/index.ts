@@ -14,6 +14,9 @@ import {
 const NEWS_TAG = "news";
 const GALLERY_TAG = "gallery";
 
+/** Cache tags the backend may ask to refresh (see app/api/revalidate). */
+export const CACHE_TAGS = { news: NEWS_TAG, gallery: GALLERY_TAG } as const;
+
 /** Backend DTO -> the shape components use. The only place that knows API field names. */
 function toArticle(dto: NewsItemDto): Article {
   return {

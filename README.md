@@ -19,6 +19,7 @@ Other scripts: `yarn build`, `yarn start`, `yarn lint`, `yarn typecheck`.
 | Variable | Value | Required |
 | --- | --- | --- |
 | `API_BASE_URL` | Backend API address ending in `/api`, with no trailing slash. Example: `https://your-backend.vercel.app/api` | In production |
+| `REVALIDATE_SECRET` | Shared secret for `POST /api/revalidate`. Use the same value as the backend. Without it the endpoint is off. | For instant refresh |
 
 Outside production the address defaults to `http://localhost:4000/api`, which matches `npm run dev` in the backend. In production, `next build` stops if the variable is missing. On Vercel, redeploy after you change it.
 
