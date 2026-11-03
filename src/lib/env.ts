@@ -19,7 +19,7 @@ export function getServerEnv() {
     // Default only outside production, so a missing prod variable is caught early.
     API_BASE_URL:
       process.env.API_BASE_URL ??
-      (process.env.NODE_ENV === "production" ? undefined : "http://localhost:4000/v1"),
+      (process.env.NODE_ENV === "production" ? undefined : "http://localhost:4000/api"),
   });
   if (!parsed.success) {
     throw new Error(`Invalid environment: API_BASE_URL must be a valid URL (${parsed.error.message})`);

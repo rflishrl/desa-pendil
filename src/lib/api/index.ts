@@ -18,10 +18,10 @@ const GALLERY_TAG = "gallery";
 function toArticle(dto: NewsItemDto): Article {
   return {
     id: dto.id,
-    title: dto.judul,
-    date: dto.createdAt,
+    title: dto.title,
+    date: dto.publishedAt ?? dto.createdAt,
     image: resolveImageSrc(dto.thumbnail),
-    content: dto.isi ?? undefined,
+    content: dto.content ?? undefined,
     author: dto.author ?? undefined,
   };
 }
@@ -48,9 +48,9 @@ function parseItems<T>(items: unknown[], parse: (item: unknown) => T | null, lab
  */
 export async function getArticles(): Promise<Article[]> {
   try {
-    const result = await apiGet("/news?limit=50", { schema: newsListSchema, tags: [NEWS_TAG] });
+    const result = await apiGet("/news/v1?limit=50", { schema: newsListSchema, tags: [NEWS_TAG] });
     return parseItems(
-      result?.data ?? [],
+      result?.data.items ?? [],
       (item) => {
         const parsed = newsItemSchema.safeParse(item);
         return parsed.success ? toArticle(parsed.data) : null;
@@ -67,7 +67,7 @@ export async function getArticles(): Promise<Article[]> {
 /** One article by id or slug, or undefined when it does not exist (or the API is down). */
 export async function getArticle(id: string): Promise<Article | undefined> {
   try {
-    const result = await apiGet(`/news/${encodeURIComponent(id)}`, {
+    const result = await apiGet(`/news/v1/${encodeURIComponent(id)}`, {
       schema: newsDetailSchema,
       tags: [NEWS_TAG],
       allowNotFound: true,
@@ -86,12 +86,12 @@ export async function getArticle(id: string): Promise<Article | undefined> {
  */
 export async function getGalleryImages(): Promise<GalleryImage[] | null> {
   try {
-    const result = await apiGet("/gallery", { schema: galleryListSchema, tags: [GALLERY_TAG] });
+    const result = await apiGet("/gallery/v1?limit=50", { schema: galleryListSchema, tags: [GALLERY_TAG] });
     return parseItems(
-      result?.data ?? [],
+      result?.data.items ?? [],
       (item) => {
         const parsed = galleryItemSchema.safeParse(item);
-        return parsed.success ? { src: resolveImageSrc(parsed.data.src), alt: parsed.data.alt } : null;
+        return parsed.success ? { src: resolveImageSrc(parsed.data.url), alt: parsed.data.alt } : null;
       },
       "gallery",
     );

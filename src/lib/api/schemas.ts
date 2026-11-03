@@ -6,23 +6,30 @@ import { z } from "zod";
  */
 
 export const newsItemSchema = z.object({
-  id: z.union([z.string(), z.number()]).transform(String),
-  judul: z.string().min(1),
+  id: z.string().min(1),
+  title: z.string().min(1),
+  publishedAt: z.string().nullish(),
   createdAt: z.string(),
   thumbnail: z.string().nullish(),
-  isi: z.string().nullish(),
+  content: z.string().nullish(),
   author: z.string().nullish(),
 });
 
 /** Items are parsed one by one later, so a single bad row cannot blank the whole list. */
-export const newsListSchema = z.object({ data: z.array(z.unknown()) });
-export const newsDetailSchema = z.object({ data: newsItemSchema });
+export const newsListSchema = z.object({
+  success: z.literal(true),
+  data: z.object({ items: z.array(z.unknown()) }),
+});
+export const newsDetailSchema = z.object({ success: z.literal(true), data: newsItemSchema });
 
 export const galleryItemSchema = z.object({
-  src: z.string().nullish(),
+  url: z.string().nullish(),
   alt: z.string().min(1),
 });
-export const galleryListSchema = z.object({ data: z.array(z.unknown()) });
+export const galleryListSchema = z.object({
+  success: z.literal(true),
+  data: z.object({ items: z.array(z.unknown()) }),
+});
 
 export type NewsItemDto = z.infer<typeof newsItemSchema>;
 export type GalleryItemDto = z.infer<typeof galleryItemSchema>;

@@ -1,20 +1,25 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Work_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { siteConfig } from "@/config/site";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
+// Font disimpan di src/fonts (subset latin), jadi build tidak bergantung pada Google Fonts.
+const montserrat = localFont({
+  src: "../fonts/montserrat-latin-wght-normal.woff2",
+  weight: "100 900",
   display: "swap",
   variable: "--font-montserrat",
 });
 
-const workSans = Work_Sans({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: ["500", "700"],
+const workSans = localFont({
+  src: [
+    { path: "../fonts/work-sans-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/work-sans-latin-500-italic.woff2", weight: "500", style: "italic" },
+    { path: "../fonts/work-sans-latin-700-normal.woff2", weight: "700", style: "normal" },
+    { path: "../fonts/work-sans-latin-700-italic.woff2", weight: "700", style: "italic" },
+  ],
   display: "swap",
   variable: "--font-work-sans",
 });
