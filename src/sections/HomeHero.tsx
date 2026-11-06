@@ -16,45 +16,46 @@ export function HomeHero() {
         <div className="max-w-4xl space-y-9 lg:space-y-[60px]">
           <h1
             id="hero-title"
-            className="text-4xl font-bold uppercase leading-tight [overflow-wrap:anywhere]"
+            className="text-4xl font-bold uppercase leading-tight text-balance [overflow-wrap:anywhere]"
           >
             Menjawab Kebutuhan Informasi Publik warga desa Pendil
           </h1>
 
           <div className="space-y-4">
-            <p className="text-base font-medium">
+            <p className="text-base font-medium text-pretty">
               Temukan informasi yang kamu cari di sini
             </p>
-            <form
-              action="/article"
-              method="get"
-              role="search"
-              className="flex max-w-[620px] flex-col gap-2 sm:flex-row"
-            >
-              <div className="relative flex-1">
-                <label htmlFor="hero-search" className="sr-only">
-                  Cari informasi
-                </label>
-                <MdSearch
-                  aria-hidden
-                  className="pointer-events-none absolute left-4 top-1/2 size-6 -translate-y-1/2 text-muted"
-                />
-                <input
-                  id="hero-search"
-                  type="search"
-                  name="q"
-                  autoComplete="off"
-                  placeholder="Cari informasi Anda"
-                  className="min-h-[50px] w-full rounded-lg bg-white pl-12 pr-3 text-xs font-semibold text-ink placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:min-h-[60px] sm:text-base"
-                />
-              </div>
-              <Button
-                type="submit"
-                className="w-fit bg-primary-400 hover:bg-primary sm:min-h-[60px]"
+            <search>
+              <form
+                action="/article"
+                method="get"
+                className="flex max-w-[620px] flex-col gap-2 sm:flex-row"
               >
-                Cari
-              </Button>
-            </form>
+                <div className="relative flex-1">
+                  <label htmlFor="hero-search" className="sr-only">
+                    Cari informasi
+                  </label>
+                  <MdSearch
+                    aria-hidden
+                    className="pointer-events-none absolute left-4 top-1/2 size-6 -translate-y-1/2 text-muted"
+                  />
+                  <input
+                    id="hero-search"
+                    type="search"
+                    name="q"
+                    autoComplete="off"
+                    placeholder="Cari informasi Anda"
+                    className="min-h-[50px] w-full rounded-lg bg-white pl-12 pr-3 text-xs font-semibold text-ink placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:min-h-[60px] sm:text-base"
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  className="w-fit bg-primary-400 hover:bg-primary sm:min-h-[60px]"
+                >
+                  Cari
+                </Button>
+              </form>
+            </search>
           </div>
 
           <div className="space-y-6">

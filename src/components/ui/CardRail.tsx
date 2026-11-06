@@ -20,7 +20,7 @@ export function CardRail({ label, columns, itemWidth, children }: CardRailProps)
       tabIndex={0}
       aria-label={label}
       className={cn(
-        "flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [&>li]:shrink-0 [&>li]:snap-start",
+        "flex snap-x snap-mandatory overscroll-x-contain gap-6 overflow-x-auto pb-4 [&>li]:shrink-0 [&>li]:snap-start",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
         "md:grid md:gap-6 md:overflow-visible md:pb-0 md:[&>li]:w-auto",
         itemWidth,

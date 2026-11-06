@@ -42,7 +42,8 @@ export async function POST(request: Request) {
   }
 
   const tags = body.data.tags.filter((tag) => knownTags.includes(tag));
-  for (const tag of tags) revalidateTag(tag);
+  // `expire: 0` membuat cache langsung kedaluwarsa di Next.js 16.
+  for (const tag of tags) revalidateTag(tag, { expire: 0 });
 
   return NextResponse.json({ revalidated: tags });
 }

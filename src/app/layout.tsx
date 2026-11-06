@@ -25,6 +25,7 @@ const workSans = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://desapendil.id"),
   title: {
     default: `${siteConfig.name} | Informasi Publik Desa`,
     template: `%s | ${siteConfig.name}`,
@@ -55,7 +56,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Lewati ke konten utama
         </a>
         <Navbar />
-        <main id="main-content">{children}</main>
+        <main id="main-content" tabIndex={-1} className="focus:outline-none">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
