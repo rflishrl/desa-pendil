@@ -10,6 +10,8 @@ export function LeaderSection() {
             <img
               src={leader.image}
               alt={`Kepala Desa ${leader.name}`}
+              width={592}
+              height={537}
               loading="lazy"
               decoding="async"
               className="h-full w-full object-cover"

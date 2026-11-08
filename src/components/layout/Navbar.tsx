@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { mainNav, siteConfig } from "@/config/site";
 import { cn } from "@/lib/cn";
@@ -35,6 +35,7 @@ export function Navbar() {
               <li key={item.href}>
                 <Link
                   to={item.href}
+                  viewTransition
                   aria-current={isActive(item.href) ? "page" : undefined}
                   className={cn(
                     "inline-flex min-h-[50px] items-center rounded-lg px-6 text-base font-semibold transition-colors duration-200 hover:bg-white/10 hover:text-primary xl:px-9",
@@ -74,6 +75,7 @@ export function Navbar() {
           transition
           className="fixed inset-x-[17px] top-[22px] origin-top rounded-xl bg-white p-3 shadow-card-hover transition duration-200 ease-out data-[closed]:-translate-y-2 data-[closed]:opacity-0 motion-reduce:transition-none"
         >
+          <DialogTitle className="sr-only">Navigasi Seluler Desa Pendil</DialogTitle>
           <div className="mb-2 flex items-center justify-between pl-3">
             <span className="flex items-center gap-3 text-base font-bold">
               <img
@@ -103,6 +105,7 @@ export function Navbar() {
                 <li key={item.href}>
                   <Link
                     to={item.href}
+                    viewTransition
                     onClick={() => setOpen(false)}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className={cn(

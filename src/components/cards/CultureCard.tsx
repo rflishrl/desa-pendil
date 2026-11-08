@@ -8,7 +8,10 @@ export function CultureCard({ item }: { item: CultureItem }) {
         <img
           src={item.image}
           alt={`Kesenian ${item.title}`}
+          width={400}
+          height={254}
           loading="lazy"
+          decoding="async"
           className="h-full w-full rounded-2xl object-cover"
         />
       </div>

@@ -17,6 +17,8 @@ export function GalleryGrid({ images, rail = false }: GalleryGridProps) {
       <img
         src={image.src}
         alt={image.alt}
+        width={397}
+        height={525}
         loading="lazy"
         decoding="async"
         className="h-full w-full object-cover transition-transform duration-300 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"

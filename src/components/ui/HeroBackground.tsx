@@ -6,6 +6,7 @@ export function HeroBackground() {
         alt=""
         loading="eager"
         fetchPriority="high"
+        decoding="async"
         aria-hidden="true"
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />

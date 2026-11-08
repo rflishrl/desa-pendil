@@ -8,7 +8,10 @@ export function OfficialCard({ official }: { official: Official }) {
         <img
           src={official.image}
           alt={`Foto ${official.name}`}
+          width={291}
+          height={389}
           loading="lazy"
+          decoding="async"
           className="h-full w-full rounded-2xl object-cover"
         />
       </div>

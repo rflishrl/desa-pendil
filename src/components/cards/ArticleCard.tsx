@@ -14,7 +14,10 @@ export function ArticleCard({ article, href }: { article: Article; href?: string
         <img
           src={article.image}
           alt=""
+          width={400}
+          height={254}
           loading="lazy"
+          decoding="async"
           className="h-full w-full rounded-2xl object-cover"
         />
       </div>
