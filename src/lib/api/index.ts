@@ -1,7 +1,6 @@
-import "server-only";
 import type { Article, GalleryImage } from "@/types";
 import { resolveImageSrc } from "@/lib/images";
-import { ApiClientError, apiGet } from "./client";
+import { ApiClientError, apiGet } from "./client.server";
 import {
   galleryItemSchema,
   galleryListSchema,
@@ -104,3 +103,10 @@ export async function getGalleryImages(): Promise<GalleryImage[] | null> {
     return null;
   }
 }
+
+export {
+  getArticlesServerFn,
+  getArticleServerFn,
+  getGalleryImagesServerFn,
+} from "./functions";
+
