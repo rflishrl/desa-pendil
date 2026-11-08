@@ -1,22 +1,24 @@
 # Desa Pendil Website
 
-Official public website for Desa Pendil, located in Banyuanyar, Probolinggo, East Java, Indonesia. The platform provides news updates, public administration data, village governance profiles, and community photo galleries.
+Official public website for Desa Pendil, located in Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur, Indonesia. The platform provides public information, village administrative profiles, news updates, local demographic records, and community activity galleries.
 
-Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, **Tailwind CSS**, and powered by the **Bun** runtime.
+Built with **TanStack Start**, **TanStack Router**, **React 19**, **Vite 8**, **Tailwind CSS**, and powered by the **Bun** runtime.
 
-News and gallery entries are dynamically sourced from the [desa-pendil-backend](https://github.com/rflishrl/desa-pendil-backend) service. All other informational sections are statically maintained within this repository.
+News and gallery entries are dynamically sourced from the [desa-pendil-backend](https://github.com/rflishrl/desa-pendil-backend) service. All other informational sections are statically maintained within this repository with offline fallbacks.
 
 ---
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 (App Router) with Turbopack
+- **Framework**: TanStack Start (Full-stack SSR)
+- **Routing**: TanStack Router (File-based routing)
+- **Bundler & Build Tool**: Vite 8
 - **Runtime & Package Manager**: Bun 1.4+
 - **UI Library**: React 19
 - **Styling**: Tailwind CSS 3.4
 - **Language**: TypeScript 5.9 (Strict mode)
-- **Icons**: React Icons (Heroicons, Phosphor Icons, FontAwesome)
 - **Validation**: Zod 4
+- **Icons**: React Icons (Heroicons, Phosphor Icons, FontAwesome)
 
 ---
 
@@ -46,18 +48,19 @@ cp .env.example .env.local
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
 ## Available Commands
 
 | Command | Action |
-| --- | --- |
-| `bun dev` | Starts the local Next.js development server |
-| `bun run build` | Compiles the production build using Turbopack |
-| `bun run start` | Launches the compiled production server |
-| `bun run lint` | Runs ESLint 9 checks |
+| :--- | :--- |
+| `bun dev` | Starts the local Vite development server |
+| `bun run build` | Compiles client and SSR production bundles |
+| `bun run preview` | Previews the production build locally |
+| `bun run start` | Alias for `bun run preview` |
+| `bun run lint` | Runs ESLint 9 Flat Config checks |
 | `bun run typecheck` | Validates TypeScript types with `tsc --noEmit` |
 
 ---
@@ -65,47 +68,53 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## Environment Variables
 
 | Variable | Description | Requirement |
-| --- | --- | --- |
-| `API_BASE_URL` | Base URL of the backend API without trailing slash (e.g. `http://localhost:4000/api` or production endpoint) | Required in production |
-| `REVALIDATE_SECRET` | Shared secret token for on-demand revalidation at `POST /api/revalidate` | Optional (Required for webhook revalidation) |
-| `NEXT_PUBLIC_SITE_URL` | Canonical public URL used for Open Graph metadata, `sitemap.xml`, and `robots.txt` (defaults to `https://desapendil.id`) | Recommended |
+| :--- | :--- | :--- |
+| `API_BASE_URL` | Base URL of the backend API without a trailing slash (e.g. `http://localhost:4000/api` or production endpoint) | Required in production |
+| `REVALIDATE_SECRET` | Shared secret token for on-demand cache revalidation at `POST /api/revalidate` | Optional (Required for webhook revalidation) |
+| `VITE_SITE_URL` | Canonical public URL used for Open Graph metadata, `sitemap.xml`, and `robots.txt` (defaults to `https://desapendil.id`) | Optional |
 
 In development, `API_BASE_URL` defaults to `http://localhost:4000/api`. In production, builds validate this configuration and fail early if the endpoint is missing or malformed.
 
 ---
 
-## Site Pages & Architecture
+## Route Architecture
 
-| Route | Purpose |
-| --- | --- |
-| `/` | Landing page: hero search, latest news rail, village head address, officials, and agenda |
-| `/article` | News archive with client search queries and pagination |
-| `/article/[id]` | Individual article detail view |
-| `/services` | Public services, demographic data, and village statistics |
-| `/profile` | Historical overview, governance structure, culture, and achievements |
-| `/gallery` | Community photo gallery with responsive grid and swipe rail |
-| `/robots.txt` | Crawler directives |
-| `/sitemap.xml` | Search engine indexing index |
+All routes use TanStack Router file-based routing inside `src/routes/`:
 
----
-
-## Data Fetching & Reliability
-
-Backend interactions route through typed client helpers in `src/lib/api`. Network requests enforce an 8-second timeout and validate incoming payloads against Zod schemas.
-
-- **Resilience**: If an item in a list contains invalid data, it is logged and skipped rather than failing the entire page. If the backend is temporarily unreachable, the frontend renders clear empty states instead of crashing.
-- **Cache Strategy**: Dynamic endpoints cache content with Next.js tags (`news`, `gallery`). The backend triggers `POST /api/revalidate` with `revalidateTag(tag, { expire: 0 })` whenever village admins publish or update content.
+| Route File | URL Path | Type | Purpose |
+| :--- | :--- | :--- | :--- |
+| `src/routes/__root.tsx` | Root shell | Layout | HTML document shell, head metadata, navbar, footer, and progress bar |
+| `src/routes/index.tsx` | `/` | Streaming SSR | Landing page: hero search, streaming latest news, village head speech, officials, and agenda |
+| `src/routes/article/index.tsx` | `/article` | Full SSR | News archive with search filter (`?q=`) and pagination (`?page=`) |
+| `src/routes/article/$id.tsx` | `/article/$id` | Full SSR | Article detail view with dynamic Open Graph tags and custom 404 guard |
+| `src/routes/services.tsx` | `/services` | Full SSR | Village public services, demographic data, and hamlet statistics |
+| `src/routes/profile.tsx` | `/profile` | Static SSR | Historical origin, administrative governance, village culture, and achievements |
+| `src/routes/gallery.tsx` | `/gallery` | Full SSR | Photo gallery with responsive grid, mobile swipe rail, and pagination |
+| `src/routes/robots[.]txt.ts` | `/robots.txt` | Server Route | Crawler directives (GET) |
+| `src/routes/sitemap[.]xml.ts` | `/sitemap.xml` | Server Route | Search engine sitemap XML (GET) |
+| `src/routes/api/revalidate.ts` | `/api/revalidate` | Server Route | Constant-time authorized webhook for cache invalidation (POST) |
 
 ---
 
-## Modern Web Standards & Accessibility
+## Data Fetching & Server Functions
 
-- **Semantics**: Uses HTML5 landmark elements including `<search>`, `<header>`, `<nav>`, `<main>`, and `<footer>`.
-- **Keyboard Navigation**: Features an accessible skip-to-content link targeting `<main tabIndex={-1}>` for assistive devices.
-- **Layout Stability**: Configures `scrollbar-gutter: stable` to eliminate horizontal layout shifts (CLS) across page transitions.
-- **Swipe Containment**: Mobile card rails employ `overscroll-behavior-inline: contain` to prevent accidental history navigation during touch scrolling.
-- **Responsive Typography**: Headings use `text-wrap: balance` for symmetrical line wrapping; paragraphs utilize `text-wrap: pretty` to avoid orphaned words.
-- **Self-Hosted Assets**: Montserrat and Work Sans fonts are locally bundled in WOFF2 format under `src/fonts`, ensuring zero external network dependencies during page load.
+Backend communication is handled through typed server functions defined in `src/lib/api/functions.ts` via TanStack Start `createServerFn`:
+
+- **Isomorphic Execution**: Data loaders run on the server during SSR and make lightweight RPC calls during client transitions.
+- **Resilience**: An 8-second request timeout (`AbortSignal.timeout(8000)`) is enforced. If an item contains unexpected shapes, it is safely logged and skipped rather than failing the entire page. When the backend is offline, the frontend degrades to informative empty states and static placeholders.
+- **Webhook Invalidation**: `POST /api/revalidate` uses constant-time token comparison (`timingSafeEqual`) to verify the secret before processing cache tags.
+
+---
+
+## Web Standards & Accessibility
+
+- **Semantics**: Uses standard HTML5 landmark elements (`<header>`, `<nav>`, `<main>`, `<search>`, `<footer>`) with valid heading hierarchy.
+- **Keyboard Navigation**: Includes an accessible skip-to-content link targeting `<main tabIndex={-1}>` and visible focus outlines for all interactive controls.
+- **View Transitions**: Leverages the native browser View Transitions API for smooth cross-document page changes, respecting `prefers-reduced-motion`.
+- **Layout Stability & CLS**: All images define intrinsic dimensions and asynchronous decoding. The document shell sets `scrollbar-gutter: stable` to eliminate horizontal layout shifts.
+- **Mobile Ergonomics**: Horizontal card rails provide scroll affordance hints, touch-friendly tap targets (minimum 44px), and `overscroll-behavior-inline: contain`.
+- **Print Optimization**: Includes a dedicated `@media print` stylesheet that strips navigation overlays and formats content cleanly for physical printing by village residents.
+- **Self-Hosted Assets**: Montserrat and Work Sans fonts are locally bundled in WOFF2 format under `src/fonts/` with `font-display: swap`, eliminating third-party CDN tracking and external network failures.
 
 ---
 
@@ -113,15 +122,18 @@ Backend interactions route through typed client helpers in `src/lib/api`. Networ
 
 ```
 src/
-  app/          Next.js App Router routes, metadata, and error boundaries
   components/
-    cards/      Domain-specific cards (Article, Official, Stat, Agenda, Culture)
-    layout/     Shared header, navigation dialogs, and site footer
-    ui/         Reusable UI primitives (Button, CardRail, Container, Panel)
-  config/       Static site configuration, navigation trees, and constants
-  data/         Fallback data and local static village records
-  fonts/        Self-hosted font files with SIL Open Font Licenses
-  lib/          API client, environment validation, formatting, and utilities
-  sections/     Composed section modules used across pages
-  types/        Shared TypeScript interfaces and definitions
+    cards/        Domain cards (ArticleCard, OfficialCard, StatCard, AgendaCard, CultureCard)
+    layout/       Shared navigation bar and footer
+    ui/           Accessible UI primitives (Button, CardRail, Container, Panel, TopProgressBar)
+  config/         Site constants, navigation links, and operational hours
+  data/           Authentic local records, village statistics, and cultural information
+  fonts/          Locally hosted font files (SIL Open Font License)
+  lib/            Server functions, API client, environment validation, and utilities
+  routes/         TanStack Router file-based route definitions
+  sections/       Composed section components used across pages
+  types/          TypeScript interface contracts
+  globals.css     Tailwind layers, font declarations, and print styles
+  router.tsx      Router factory and TanStack Router registration
+  routeTree.gen.ts Generated route tree (maintained by router plugin)
 ```
