@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/cn";
 
 interface PaginationProps {
@@ -28,7 +28,7 @@ export function Pagination({ page, totalPages, basePath, params = {} }: Paginati
           return (
             <li key={n}>
               <Link
-                href={hrefFor(n)}
+                to={hrefFor(n)}
                 aria-label={`Halaman ${n}`}
                 aria-current={active ? "page" : undefined}
                 className={cn(

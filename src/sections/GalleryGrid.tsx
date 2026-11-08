@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { CardRail } from "@/components/ui/CardRail";
 import type { GalleryImage } from "@/types";
 
@@ -15,12 +14,12 @@ export function GalleryGrid({ images, rail = false }: GalleryGridProps) {
       key={`${image.src}-${index}`}
       className="relative mx-auto aspect-[278/368] w-full max-w-[278px] overflow-hidden rounded-2xl bg-canvas shadow-card sm:aspect-[397/525] sm:max-w-none"
     >
-      <Image
+      <img
         src={image.src}
         alt={image.alt}
-        fill
-        sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 278px"
-        className="object-cover transition-transform duration-300 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+        loading="lazy"
+        decoding="async"
+        className="h-full w-full object-cover transition-transform duration-300 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
       />
     </li>
   ));

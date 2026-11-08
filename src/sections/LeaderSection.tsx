@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { leader } from "@/data/village";
 
@@ -8,12 +7,12 @@ export function LeaderSection() {
       <Container>
         <div className="grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-[42px]">
           <div className="relative mx-auto aspect-[592/537] w-full overflow-hidden rounded-xl bg-canvas md:rounded-3xl">
-            <Image
+            <img
               src={leader.image}
               alt={`Kepala Desa ${leader.name}`}
-              fill
-              sizes="(min-width: 768px) 45vw, 90vw"
-              className="object-cover"
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover"
             />
           </div>
           <div>

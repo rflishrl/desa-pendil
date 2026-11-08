@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { MdSearch } from "react-icons/md";
 import { popularSearches } from "@/config/site";
 import { Button } from "@/components/ui/Button";
@@ -64,7 +64,8 @@ export function HomeHero() {
               {popularSearches.map((term) => (
                 <li key={term} className="flex-1 sm:flex-none">
                   <Link
-                    href={`/article?q=${encodeURIComponent(term)}`}
+                    to="/article"
+                    search={{ q: term }}
                     className="flex min-h-11 items-center justify-center rounded-lg bg-primary/10 px-4 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:min-h-[60px] sm:px-9 sm:text-base"
                   >
                     {term}

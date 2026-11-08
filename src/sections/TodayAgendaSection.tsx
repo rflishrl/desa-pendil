@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { PiArrowUpRight } from "react-icons/pi";
 import { AgendaCard } from "@/components/cards/AgendaCard";
 import { ButtonLink } from "@/components/ui/Button";
@@ -14,13 +13,13 @@ export function TodayAgendaSection() {
       aria-labelledby="agenda-title"
       className="relative isolate my-8 overflow-hidden py-12 lg:my-[70px] lg:py-[60px]"
     >
-      <Image
+      <img
         src="/images/bg-event.png"
         alt=""
-        fill
-        sizes="100vw"
-        quality={60}
-        className="-z-10 object-cover"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
       />
       <Container>
         <SectionHeading

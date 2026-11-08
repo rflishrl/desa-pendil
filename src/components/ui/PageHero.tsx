@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
 import { HeroBackground } from "@/components/ui/HeroBackground";
@@ -29,7 +29,7 @@ export function PageHero({ title, description, trail, children }: PageHeroProps)
           <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <li>
               <Link
-                href="/"
+                to="/"
                 className="rounded text-[#F7F7F7] underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 Beranda
@@ -42,7 +42,7 @@ export function PageHero({ title, description, trail, children }: PageHeroProps)
                   <span aria-hidden>/</span>
                   {crumb.href && !last ? (
                     <Link
-                      href={crumb.href}
+                      to={crumb.href}
                       className="rounded underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     >
                       {crumb.label}

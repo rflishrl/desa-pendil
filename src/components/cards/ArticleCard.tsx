@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { PiArrowUpRight } from "react-icons/pi";
 import type { Article } from "@/types";
 import { formatLongDate } from "@/lib/format";
@@ -12,12 +11,11 @@ export function ArticleCard({ article, href }: { article: Article; href?: string
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card transition-shadow duration-200 hover:shadow-card-hover">
       <div className="relative h-[177px] shrink-0 bg-canvas sm:h-[254px]">
-        <Image
+        <img
           src={article.image}
           alt=""
-          fill
-          sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 90vw"
-          className="rounded-2xl object-cover"
+          loading="lazy"
+          className="h-full w-full rounded-2xl object-cover"
         />
       </div>
       <div className="flex flex-1 flex-col justify-between gap-6 p-6 lg:p-9">
@@ -31,7 +29,7 @@ export function ArticleCard({ article, href }: { article: Article; href?: string
         </div>
         {href ? (
           <Link
-            href={href}
+            to={href}
             className="inline-flex min-h-11 w-fit items-center gap-2 rounded-lg bg-primary/10 px-4 text-xs font-semibold text-primary-700 transition-colors hover:bg-primary/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 lg:min-h-9"
           >
             Selengkapnya

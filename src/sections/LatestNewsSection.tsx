@@ -49,3 +49,25 @@ export function LatestNewsSection({ articles }: { articles: Article[] }) {
     </section>
   );
 }
+
+export function LatestNewsSectionSkeleton() {
+  return (
+    <section aria-labelledby="berita-title" className="relative z-10 -mt-24 sm:-mt-28">
+      <Container size="wide">
+        <Panel>
+          <SectionHeading id="berita-title" title="Berita Terkini" />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="h-[360px] animate-pulse rounded-2xl bg-[#F0F0F0]"
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+        </Panel>
+      </Container>
+    </section>
+  );
+}
+

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { CultureItem } from "@/types";
 
 /** Figma "CardKesenian": 254px photo, text panel padding 36, 16/22 body text. */
@@ -6,12 +5,11 @@ export function CultureCard({ item }: { item: CultureItem }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card">
       <div className="relative h-[188px] shrink-0 bg-canvas sm:h-[254px]">
-        <Image
+        <img
           src={item.image}
           alt={`Kesenian ${item.title}`}
-          fill
-          sizes="(min-width: 1024px) 410px, (min-width: 768px) 45vw, 90vw"
-          className="rounded-2xl object-cover"
+          loading="lazy"
+          className="h-full w-full rounded-2xl object-cover"
         />
       </div>
       <div className="space-y-3 p-[26px] lg:space-y-4 lg:p-9">

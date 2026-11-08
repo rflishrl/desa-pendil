@@ -1,9 +1,5 @@
-"use client";
-
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { mainNav, siteConfig } from "@/config/site";
@@ -14,7 +10,7 @@ const focusRing =
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname = useLocation({ select: (location) => location.pathname });
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -24,7 +20,7 @@ export function Navbar() {
       {/* Figma: 36px side padding on mobile, 120px on desktop (1728 wide) */}
       <div className="mx-auto flex h-20 w-full max-w-[1608px] items-center justify-between px-9 xl:px-[60px]">
         <Link
-          href="/"
+          to="/"
           className={cn(
             "rounded font-logo text-lg font-bold italic text-primary-100 lg:font-sans lg:text-2xl lg:font-black lg:not-italic",
             focusRing,
@@ -38,7 +34,7 @@ export function Navbar() {
             {mainNav.map((item) => (
               <li key={item.href}>
                 <Link
-                  href={item.href}
+                  to={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
                   className={cn(
                     "inline-flex min-h-[50px] items-center rounded-lg px-6 text-base font-semibold transition-colors duration-200 hover:bg-white/10 hover:text-primary xl:px-9",
@@ -80,7 +76,13 @@ export function Navbar() {
         >
           <div className="mb-2 flex items-center justify-between pl-3">
             <span className="flex items-center gap-3 text-base font-bold">
-              <Image src="/images/dummy-logo.png" alt="" width={28} height={28} />
+              <img
+                src="/images/dummy-logo.png"
+                alt=""
+                width={28}
+                height={28}
+                loading="lazy"
+              />
               {siteConfig.name}
             </span>
             <button
@@ -100,7 +102,7 @@ export function Navbar() {
               {mainNav.map((item) => (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    to={item.href}
                     onClick={() => setOpen(false)}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className={cn(

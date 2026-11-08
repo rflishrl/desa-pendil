@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import { footerGroups, siteConfig, socialLinks } from "@/config/site";
@@ -19,8 +18,14 @@ export function Footer() {
         <div className="grid gap-9 lg:grid-cols-[auto_1fr] lg:justify-between lg:gap-16">
           <div className="flex flex-col gap-9 lg:justify-between">
             <div className="space-y-4">
-              <Link href="/" className="inline-flex items-center gap-3.5 rounded">
-                <Image src="/images/dummy-logo-2.png" alt="" width={38} height={47} />
+              <Link to="/" className="inline-flex items-center gap-3.5 rounded">
+                <img
+                  src="/images/dummy-logo-2.png"
+                  alt=""
+                  width={38}
+                  height={47}
+                  loading="lazy"
+                />
                 <span className="font-logo text-2xl font-bold italic text-primary-700">
                   {siteConfig.name}
                 </span>
@@ -58,7 +63,7 @@ export function Footer() {
                   {group.links.map((link) => (
                     <li key={link.href}>
                       <Link
-                        href={link.href}
+                        to={link.href}
                         className="inline-flex min-h-9 items-center rounded text-sm font-semibold underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       >
                         {link.label}
