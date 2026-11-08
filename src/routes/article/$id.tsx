@@ -60,10 +60,7 @@ function ArticleNotFound() {
     <>
       <PageHero
         title="Berita tidak ditemukan"
-        trail={[
-          { label: "Berita Desa Pendil", href: "/article" },
-          { label: "Tidak Ditemukan" },
-        ]}
+        trail={[{ label: "Berita Desa Pendil", href: "/article" }, { label: "Tidak Ditemukan" }]}
       />
       <section className="relative z-10 -mt-24 lg:-mt-32">
         <Container size="wide">
@@ -94,18 +91,13 @@ function ArticleDetailPage() {
     <>
       <PageHero
         title={article.title}
-        trail={[
-          { label: "Berita Desa Pendil", href: "/article" },
-          { label: "Preview Berita" },
-        ]}
+        trail={[{ label: "Berita Desa Pendil", href: "/article" }, { label: "Preview Berita" }]}
       >
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-base font-medium">
           <li className="flex items-center gap-2">
             <LuCalendarDays className="size-6" aria-hidden />
             <time dateTime={article.date}>
-              {Number.isNaN(date.getTime())
-                ? article.date
-                : formatLongDate(date)}
+              {Number.isNaN(date.getTime()) ? article.date : formatLongDate(date)}
             </time>
           </li>
           <li className="flex items-center gap-2">
@@ -158,10 +150,7 @@ function ArticleDetailPage() {
                 <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {related.map((item) => (
                     <li key={item.id}>
-                      <ArticleCard
-                        article={item}
-                        href={`/article/${item.id}`}
-                      />
+                      <ArticleCard article={item} href={`/article/${item.id}`} />
                     </li>
                   ))}
                 </ul>

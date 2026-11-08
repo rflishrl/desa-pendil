@@ -39,7 +39,8 @@ export async function apiGet<S extends z.ZodType>(
   }
 
   if (response.status === 404 && allowNotFound) return null;
-  if (!response.ok) throw new ApiClientError(`${path} responded with ${response.status}`, response.status);
+  if (!response.ok)
+    throw new ApiClientError(`${path} responded with ${response.status}`, response.status);
 
   let body: unknown;
   try {
@@ -50,7 +51,10 @@ export async function apiGet<S extends z.ZodType>(
 
   const parsed = schema.safeParse(body);
   if (!parsed.success) {
-    throw new ApiClientError(`${path} returned an unexpected shape: ${parsed.error.message}`, response.status);
+    throw new ApiClientError(
+      `${path} returned an unexpected shape: ${parsed.error.message}`,
+      response.status,
+    );
   }
   return parsed.data;
 }

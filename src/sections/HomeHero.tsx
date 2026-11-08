@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { MdSearch } from "react-icons/md";
-import { popularSearches } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroBackground } from "@/components/ui/HeroBackground";
+import { popularSearches } from "@/config/site";
 
 export function HomeHero() {
   return (

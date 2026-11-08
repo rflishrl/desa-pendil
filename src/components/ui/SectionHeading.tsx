@@ -28,9 +28,7 @@ export function SectionHeading({
       )}
     >
       <div>
-        {eyebrow ? (
-          <p className="mb-2 text-lg font-semibold text-primary-700">{eyebrow}</p>
-        ) : null}
+        {eyebrow ? <p className="mb-2 text-lg font-semibold text-primary-700">{eyebrow}</p> : null}
         <h2 id={id} className="text-balance text-[32px] font-bold leading-tight text-ink">
           {title}
         </h2>

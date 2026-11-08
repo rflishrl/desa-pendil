@@ -4,8 +4,7 @@ export const siteConfig = {
   name: "Desa Pendil",
   description:
     "Website resmi Desa Pendil, Kecamatan Banyuanyar, Kabupaten Probolinggo. Berita, layanan publik, dan profil desa.",
-  address:
-    "Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur, Indonesia.",
+  address: "Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur, Indonesia.",
   hours: "Senin - Jumat: 08.00 - 15.00 WIB",
   copyright: "Desa Pendil",
 } as const;

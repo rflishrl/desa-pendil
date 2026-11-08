@@ -17,7 +17,9 @@ export function CultureCard({ item }: { item: CultureItem }) {
       </div>
       <div className="space-y-3 p-[26px] lg:space-y-4 lg:p-9">
         <h3 className="text-lg font-bold text-black lg:text-2xl">{item.title}</h3>
-        <p className="text-sm leading-5 text-muted lg:text-base lg:leading-[22px]">{item.description}</p>
+        <p className="text-sm leading-5 text-muted lg:text-base lg:leading-[22px]">
+          {item.description}
+        </p>
       </div>
     </article>
   );

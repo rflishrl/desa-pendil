@@ -18,6 +18,7 @@ News and gallery entries are dynamically sourced from the [desa-pendil-backend](
 - **Styling**: Tailwind CSS 3.4
 - **Language**: TypeScript 5.9 (Strict mode)
 - **Validation**: Zod 4
+- **Linter & Formatter**: Biome 2.6
 - **Icons**: React Icons (Heroicons, Phosphor Icons, FontAwesome)
 
 ---
@@ -60,7 +61,9 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 | `bun run build` | Compiles client and SSR production bundles |
 | `bun run preview` | Previews the production build locally |
 | `bun run start` | Alias for `bun run preview` |
-| `bun run lint` | Runs ESLint 9 Flat Config checks |
+| `bun run lint` | Runs Biome check to validate code quality and formatting (`biome check .`) |
+| `bun run format` | Formats codebase files in place (`biome format --write .`) |
+| `bun run check` | Applies safe linter and formatter fixes (`biome check --write .`) |
 | `bun run typecheck` | Validates TypeScript types with `tsc --noEmit` |
 
 ---

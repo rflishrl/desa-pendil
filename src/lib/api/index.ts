@@ -1,13 +1,13 @@
-import type { Article, GalleryImage } from "@/types";
 import { resolveImageSrc } from "@/lib/images";
+import type { Article, GalleryImage } from "@/types";
 import { ApiClientError, apiGet } from "./client.server";
 import {
   galleryItemSchema,
   galleryListSchema,
+  type NewsItemDto,
   newsDetailSchema,
   newsItemSchema,
   newsListSchema,
-  type NewsItemDto,
 } from "./schemas";
 
 const NEWS_TAG = "news";
@@ -88,12 +88,17 @@ export async function getArticle(id: string): Promise<Article | undefined> {
  */
 export async function getGalleryImages(): Promise<GalleryImage[] | null> {
   try {
-    const result = await apiGet("/gallery/v1?limit=50", { schema: galleryListSchema, tags: [GALLERY_TAG] });
+    const result = await apiGet("/gallery/v1?limit=50", {
+      schema: galleryListSchema,
+      tags: [GALLERY_TAG],
+    });
     return parseItems(
       result?.data.items ?? [],
       (item) => {
         const parsed = galleryItemSchema.safeParse(item);
-        return parsed.success ? { src: resolveImageSrc(parsed.data.url), alt: parsed.data.alt } : null;
+        return parsed.success
+          ? { src: resolveImageSrc(parsed.data.url), alt: parsed.data.alt }
+          : null;
       },
       "gallery",
     );
@@ -105,8 +110,7 @@ export async function getGalleryImages(): Promise<GalleryImage[] | null> {
 }
 
 export {
-  getArticlesServerFn,
   getArticleServerFn,
+  getArticlesServerFn,
   getGalleryImagesServerFn,
 } from "./functions";
-

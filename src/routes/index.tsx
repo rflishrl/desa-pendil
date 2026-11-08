@@ -1,17 +1,14 @@
 import { Await, createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
+import { getArticlesServerFn } from "@/lib/api/functions";
 import { CultureSection } from "@/sections/CultureSection";
 import { FeaturesSection } from "@/sections/FeaturesSection";
 import { HomeHero } from "@/sections/HomeHero";
-import {
-  LatestNewsSection,
-  LatestNewsSectionSkeleton,
-} from "@/sections/LatestNewsSection";
+import { LatestNewsSection, LatestNewsSectionSkeleton } from "@/sections/LatestNewsSection";
 import { LeaderSection } from "@/sections/LeaderSection";
 import { OfficialsSection } from "@/sections/OfficialsSection";
 import { TodayAgendaSection } from "@/sections/TodayAgendaSection";
 import { VillageStatsSection } from "@/sections/VillageStatsSection";
-import { getArticlesServerFn } from "@/lib/api/functions";
 
 export const Route = createFileRoute("/")({
   loader: () => {

@@ -23,10 +23,7 @@ export const Route = createFileRoute("/gallery")({
     const allImages = fetched ?? placeholderImages;
     const totalPages = Math.max(1, Math.ceil(allImages.length / PAGE_SIZE));
     const currentPage = Math.min(Math.max(page || 1, 1), totalPages);
-    const images = allImages.slice(
-      (currentPage - 1) * PAGE_SIZE,
-      currentPage * PAGE_SIZE,
-    );
+    const images = allImages.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
     return {
       images,
@@ -54,33 +51,18 @@ function GalleryPage() {
       <PageHero
         title="Galeri Desa Pendil"
         description="Kumpulan foto kegiatan Desa Pendil"
-        trail={[
-          { label: "Layanan Publik", href: "/services" },
-          { label: "Galeri Desa Pendil" },
-        ]}
+        trail={[{ label: "Layanan Publik", href: "/services" }, { label: "Galeri Desa Pendil" }]}
       />
-      <section
-        aria-label="Foto kegiatan"
-        className="relative z-10 -mt-24 lg:-mt-32"
-      >
+      <section aria-label="Foto kegiatan" className="relative z-10 -mt-24 lg:-mt-32">
         <Container size="wide">
           <Panel className="space-y-12 lg:space-y-20">
-            <h2 className="text-center text-[32px] font-bold md:sr-only">
-              Semua Foto
-            </h2>
+            <h2 className="text-center text-[32px] font-bold md:sr-only">Semua Foto</h2>
             {images.length > 0 ? (
               <GalleryGrid images={images} />
             ) : (
-              <EmptyState
-                title="Belum ada foto"
-                description="Foto kegiatan akan tampil di sini."
-              />
+              <EmptyState title="Belum ada foto" description="Foto kegiatan akan tampil di sini." />
             )}
-            <Pagination
-              page={page}
-              totalPages={totalPages}
-              basePath="/gallery"
-            />
+            <Pagination page={page} totalPages={totalPages} basePath="/gallery" />
           </Panel>
         </Container>
       </section>

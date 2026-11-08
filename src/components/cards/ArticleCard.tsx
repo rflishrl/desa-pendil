@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { PiArrowUpRight } from "react-icons/pi";
-import type { Article } from "@/types";
 import { formatLongDate } from "@/lib/format";
+import type { Article } from "@/types";
 
 /** Figma "CardBerita": 254px photo on top, white text panel (padding 36) below. */
 export function ArticleCard({ article, href }: { article: Article; href?: string }) {
@@ -26,7 +26,10 @@ export function ArticleCard({ article, href }: { article: Article; href?: string
           <h3 className="line-clamp-3 text-[17px] font-bold leading-snug text-black lg:text-2xl lg:leading-8">
             {article.title}
           </h3>
-          <time dateTime={article.date} className="block text-xs font-medium text-muted lg:text-base">
+          <time
+            dateTime={article.date}
+            className="block text-xs font-medium text-muted lg:text-base"
+          >
             {dateLabel}
           </time>
         </div>

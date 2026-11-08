@@ -19,7 +19,10 @@ export function LeaderSection() {
           </div>
           <div>
             <p className="mb-3 text-sm font-semibold text-ink lg:mb-4 lg:text-xl">Sambutan</p>
-            <h2 id="sambutan-title" className="mb-4 text-balance text-xl font-bold md:text-3xl lg:mb-6 lg:text-[32px]">
+            <h2
+              id="sambutan-title"
+              className="mb-4 text-balance text-xl font-bold md:text-3xl lg:mb-6 lg:text-[32px]"
+            >
               Kepala Desa <span className="font-extrabold text-primary-700">{leader.name}</span>
             </h2>
             <p className="text-sm leading-6 text-muted lg:text-xl lg:leading-8">{leader.speech}</p>

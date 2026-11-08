@@ -1,11 +1,6 @@
-import type { ReactNode } from "react";
 import type { ErrorComponentProps } from "@tanstack/react-router";
-import {
-  Outlet,
-  createRootRoute,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
+import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -32,9 +27,7 @@ export const Route = createRootRoute({
       { name: "twitter:description", content: siteConfig.description },
       { name: "twitter:image", content: "/images/bg-hero-new.jpg" },
     ],
-    links: [
-      { rel: "icon", href: "/favicon.ico" },
-    ],
+    links: [{ rel: "icon", href: "/favicon.ico" }],
   }),
   component: RootComponent,
   notFoundComponent: RootNotFound,
@@ -94,9 +87,7 @@ function RootError({ reset }: ErrorComponentProps) {
     <RootDocument>
       <Container className="flex min-h-[70vh] flex-col items-center justify-center pt-24 text-center">
         <h1 className="mb-3 text-3xl font-bold">Terjadi kesalahan</h1>
-        <p className="mb-8 max-w-md text-muted">
-          Halaman gagal dimuat. Silakan coba lagi.
-        </p>
+        <p className="mb-8 max-w-md text-muted">Halaman gagal dimuat. Silakan coba lagi.</p>
         <Button onClick={reset}>Coba lagi</Button>
       </Container>
     </RootDocument>

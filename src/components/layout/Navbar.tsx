@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Link, useLocation } from "@tanstack/react-router";
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
+import { Link, useLocation } from "@tanstack/react-router";
+import { useState } from "react";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { mainNav, siteConfig } from "@/config/site";
 import { cn } from "@/lib/cn";
@@ -12,8 +12,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = useLocation({ select: (location) => location.pathname });
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
     <header className="absolute inset-x-0 top-0 z-30 bg-black/15 backdrop-blur-sm">
@@ -78,13 +77,7 @@ export function Navbar() {
           <DialogTitle className="sr-only">Navigasi Seluler Desa Pendil</DialogTitle>
           <div className="mb-2 flex items-center justify-between pl-3">
             <span className="flex items-center gap-3 text-base font-bold">
-              <img
-                src="/images/dummy-logo.png"
-                alt=""
-                width={28}
-                height={28}
-                loading="lazy"
-              />
+              <img src="/images/dummy-logo.png" alt="" width={28} height={28} loading="lazy" />
               {siteConfig.name}
             </span>
             <button

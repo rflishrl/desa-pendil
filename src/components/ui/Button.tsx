@@ -12,8 +12,7 @@ const variants: Record<Variant, string> = {
   primary: "bg-primary text-ink hover:bg-primary-600",
   outline:
     "border-2 border-primary text-primary-700 hover:border-primary hover:bg-primary hover:text-ink",
-  "outline-dark":
-    "border-2 border-ink text-ink hover:bg-ink hover:text-white",
+  "outline-dark": "border-2 border-ink text-ink hover:bg-ink hover:text-white",
   soft: "bg-primary/10 text-primary-700 hover:bg-primary/25",
 };
 
@@ -43,13 +42,7 @@ export function Button({
   type = "button",
   ...props
 }: StyleProps & ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      type={type}
-      className={buttonStyles({ variant, size, className })}
-      {...props}
-    />
-  );
+  return <button type={type} className={buttonStyles({ variant, size, className })} {...props} />;
 }
 
 export function ButtonLink({
@@ -58,7 +51,5 @@ export function ButtonLink({
   className,
   ...props
 }: StyleProps & ComponentProps<typeof Link>) {
-  return (
-    <Link className={buttonStyles({ variant, size, className })} {...props} />
-  );
+  return <Link className={buttonStyles({ variant, size, className })} {...props} />;
 }

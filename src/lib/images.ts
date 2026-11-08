@@ -14,7 +14,10 @@ export function resolveImageSrc(src: string | null | undefined): string {
 
   try {
     const { protocol, hostname, port } = new URL(src);
-    if (protocol === "https:" && (ALLOWED_IMAGE_HOSTS.includes(hostname) || hostname.endsWith(BLOB_HOST_SUFFIX))) {
+    if (
+      protocol === "https:" &&
+      (ALLOWED_IMAGE_HOSTS.includes(hostname) || hostname.endsWith(BLOB_HOST_SUFFIX))
+    ) {
       return src;
     }
     if (protocol === "http:" && hostname === "localhost" && port === "4000") return src;

@@ -1,16 +1,5 @@
-import {
-  MdFamilyRestroom,
-  MdHealthAndSafety,
-  MdOutlineLocationCity,
-} from "react-icons/md";
-import type {
-  AgendaItem,
-  CultureItem,
-  Feature,
-  GalleryImage,
-  Official,
-  Stat,
-} from "@/types";
+import { MdFamilyRestroom, MdHealthAndSafety, MdOutlineLocationCity } from "react-icons/md";
+import type { AgendaItem, CultureItem, Feature, GalleryImage, Official, Stat } from "@/types";
 
 /*
  * Static content. All values are placeholders carried over from the original
@@ -23,11 +12,7 @@ export const villageStats: Stat[] = [
   { icon: MdOutlineLocationCity, title: "120 KM", description: "Luas Desa" },
 ];
 
-export const hamlets = [
-  "Dusun Krajan",
-  "Dusun Pendil Tengah",
-  "Dusun Pendil Selatan",
-] as const;
+export const hamlets = ["Dusun Krajan", "Dusun Pendil Tengah", "Dusun Pendil Selatan"] as const;
 
 export const officials: Official[] = [
   { name: "H. Machfuds", position: "Kepala Desa" },
@@ -99,8 +84,7 @@ export const leader = {
 
 export const villageOrigin = {
   image: "/images/image-village.jpg",
-  text:
-    "Desa Pendil merupakan salah satu desa yang terletak di Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur. Memiliki hamparan lahan pertanian yang subur serta masyarakat yang menjunjung tinggi semangat gotong royong dan tradisi leluhur. Nama Pendil sarat akan nilai historis kearifan lokal yang melambangkan wadah kebersamaan warga dalam menjaga kerukunan, kelestarian lingkungan, dan kemajuan desa dari generasi ke generasi.",
+  text: "Desa Pendil merupakan salah satu desa yang terletak di Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur. Memiliki hamparan lahan pertanian yang subur serta masyarakat yang menjunjung tinggi semangat gotong royong dan tradisi leluhur. Nama Pendil sarat akan nilai historis kearifan lokal yang melambangkan wadah kebersamaan warga dalam menjaga kerukunan, kelestarian lingkungan, dan kemajuan desa dari generasi ke generasi.",
 };
 
 export const galleryImages: GalleryImage[] = [

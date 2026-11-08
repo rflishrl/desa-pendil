@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import type { IconType } from "react-icons";
-import { footerGroups, siteConfig, socialLinks } from "@/config/site";
+import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { Container } from "@/components/ui/Container";
+import { footerGroups, siteConfig, socialLinks } from "@/config/site";
 
 const socialIcons: Record<(typeof socialLinks)[number]["icon"], IconType> = {
   facebook: FaFacebookF,
@@ -19,13 +19,7 @@ export function Footer() {
           <div className="flex flex-col gap-9 lg:justify-between">
             <div className="space-y-4">
               <Link to="/" className="inline-flex items-center gap-3.5 rounded">
-                <img
-                  src="/images/dummy-logo-2.png"
-                  alt=""
-                  width={38}
-                  height={47}
-                  loading="lazy"
-                />
+                <img src="/images/dummy-logo-2.png" alt="" width={38} height={47} loading="lazy" />
                 <span className="font-logo text-2xl font-bold italic text-primary-700">
                   {siteConfig.name}
                 </span>

@@ -23,10 +23,7 @@ export const Route = createFileRoute("/profile")({
 function ProfilePage() {
   return (
     <>
-      <PageHero
-        title="Profil Desa Pendil"
-        description="Profil dan informasi seputar Desa Pendil"
-      />
+      <PageHero title="Profil Desa Pendil" description="Profil dan informasi seputar Desa Pendil" />
 
       {/* Figma "CardSambutan": textured panel, radius 24, shadow 0 8 30 */}
       <section
@@ -55,13 +52,8 @@ function ProfilePage() {
                 />
               </div>
               <div className="space-y-4">
-                <p className="text-lg font-semibold text-ink lg:text-xl">
-                  Asal Usul
-                </p>
-                <h2
-                  id="asal-usul-title"
-                  className="text-2xl font-bold lg:text-[32px]"
-                >
+                <p className="text-lg font-semibold text-ink lg:text-xl">Asal Usul</p>
+                <h2 id="asal-usul-title" className="text-2xl font-bold lg:text-[32px]">
                   Desa Pendil
                 </h2>
                 <p className="text-base leading-7 text-muted lg:text-xl lg:leading-8">

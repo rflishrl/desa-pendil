@@ -18,9 +18,7 @@ export function getServerEnv() {
 
   const isProd = process.env.NODE_ENV === "production";
   const parsed = serverSchema.safeParse({
-    API_BASE_URL:
-      process.env.API_BASE_URL ??
-      (isProd ? undefined : "http://localhost:4000/api"),
+    API_BASE_URL: process.env.API_BASE_URL ?? (isProd ? undefined : "http://localhost:4000/api"),
     SITE_URL:
       process.env.SITE_URL ??
       process.env.VITE_SITE_URL ??
@@ -29,9 +27,7 @@ export function getServerEnv() {
   });
 
   if (!parsed.success) {
-    throw new Error(
-      `Invalid server environment: ${parsed.error.message}`,
-    );
+    throw new Error(`Invalid server environment: ${parsed.error.message}`);
   }
   cached = parsed.data;
   return cached;

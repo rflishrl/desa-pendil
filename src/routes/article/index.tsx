@@ -27,10 +27,7 @@ export const Route = createFileRoute("/article/")({
 
     const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
     const currentPage = Math.min(Math.max(page || 1, 1), totalPages);
-    const articles = filtered.slice(
-      (currentPage - 1) * PAGE_SIZE,
-      currentPage * PAGE_SIZE,
-    );
+    const articles = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
     return {
       articles,
@@ -53,31 +50,17 @@ export const Route = createFileRoute("/article/")({
 });
 
 function ArticlePage() {
-  const { articles, query, page, totalPages, totalCount } =
-    Route.useLoaderData();
+  const { articles, query, page, totalPages, totalCount } = Route.useLoaderData();
 
   return (
     <>
-      <PageHero
-        title="Berita Desa Pendil"
-        description="Kumpulan berita terbaru dari Desa Pendil"
-      />
-      <section
-        aria-labelledby="semua-berita-title"
-        className="relative z-10 -mt-24 lg:-mt-32"
-      >
+      <PageHero title="Berita Desa Pendil" description="Kumpulan berita terbaru dari Desa Pendil" />
+      <section aria-labelledby="semua-berita-title" className="relative z-10 -mt-24 lg:-mt-32">
         <Container size="wide">
           <Panel className="space-y-12 lg:space-y-20">
             <div className="space-y-12">
-              <div
-                className={
-                  query ? "text-center sm:text-left" : "text-center md:sr-only"
-                }
-              >
-                <h2
-                  id="semua-berita-title"
-                  className="text-[32px] font-bold leading-tight"
-                >
+              <div className={query ? "text-center sm:text-left" : "text-center md:sr-only"}>
+                <h2 id="semua-berita-title" className="text-[32px] font-bold leading-tight">
                   {query ? `Hasil untuk “${query}”` : "Semua Berita"}
                 </h2>
                 {query ? (
@@ -97,18 +80,13 @@ function ArticlePage() {
                 <ul className="mx-auto grid max-w-[276px] gap-6 md:mx-0 md:max-w-none md:grid-cols-2 lg:grid-cols-3">
                   {articles.map((article) => (
                     <li key={article.id}>
-                      <ArticleCard
-                        article={article}
-                        href={`/article/${article.id}`}
-                      />
+                      <ArticleCard article={article} href={`/article/${article.id}`} />
                     </li>
                   ))}
                 </ul>
               ) : (
                 <EmptyState
-                  title={
-                    query ? "Berita tidak ditemukan" : "Berita belum tersedia"
-                  }
+                  title={query ? "Berita tidak ditemukan" : "Berita belum tersedia"}
                   description={
                     query
                       ? "Coba gunakan kata kunci lain."

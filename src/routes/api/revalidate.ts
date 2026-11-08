@@ -22,10 +22,7 @@ export const Route = createFileRoute("/api/revalidate")({
       POST: async ({ request }: { request: Request }) => {
         const secret = process.env.REVALIDATE_SECRET?.trim();
         if (!secret) {
-          return Response.json(
-            { error: "REVALIDATE_SECRET is not set." },
-            { status: 503 },
-          );
+          return Response.json({ error: "REVALIDATE_SECRET is not set." }, { status: 503 });
         }
         if (!isAuthorized(request, secret)) {
           return Response.json({ error: "Unauthorized." }, { status: 401 });

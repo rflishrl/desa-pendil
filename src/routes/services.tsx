@@ -8,11 +8,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { PageHero } from "@/components/ui/PageHero";
 import { Panel } from "@/components/ui/Panel";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import {
-  galleryImages as placeholderImages,
-  hamlets,
-  villageStats,
-} from "@/data/village";
+import { hamlets, galleryImages as placeholderImages, villageStats } from "@/data/village";
 import { getGalleryImagesServerFn } from "@/lib/api/functions";
 import { GalleryGrid } from "@/sections/GalleryGrid";
 
@@ -52,10 +48,7 @@ function ServicesPage() {
 
   return (
     <>
-      <PageHero
-        title="Layanan Publik"
-        description="Kumpulan data dari Desa Pendil"
-      />
+      <PageHero title="Layanan Publik" description="Kumpulan data dari Desa Pendil" />
 
       <div className="relative z-10 -mt-24 space-y-20 lg:-mt-32 lg:space-y-[140px]">
         {/* Data Desa: textured panel (Figma "bg" fill) */}
@@ -103,10 +96,7 @@ function ServicesPage() {
 
         {/* Galeri: transparent 324px box on mobile with a swipe rail */}
         <section id="galeri" aria-labelledby="galeri-title">
-          <Container
-            size="wide"
-            className="md:max-w-[1328px] md:!px-8 lg:!px-10"
-          >
+          <Container size="wide" className="md:max-w-[1328px] md:!px-8 lg:!px-10">
             <div className="px-6 py-12 md:p-0">
               <SectionHeading
                 id="galeri-title"
