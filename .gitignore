@@ -14,6 +14,8 @@
 
 # production
 /build
+/dist/
+/.output/
 
 # misc
 .DS_Store
@@ -33,3 +35,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ai agent customizations and skills
+.agents/
+.agent/
+_agents/
+_agent/
+AGENTS.md
