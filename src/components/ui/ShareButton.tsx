@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { LuShare2 } from "react-icons/lu";
 import { Button } from "@/components/ui/Button";

@@ -30,8 +30,9 @@ export function Footer() {
                   {siteConfig.name}
                 </span>
               </Link>
-              <address className="max-w-[248px] text-sm font-semibold not-italic">
-                {siteConfig.address}
+              <address className="max-w-[280px] text-sm font-semibold not-italic space-y-1">
+                <p>{siteConfig.address}</p>
+                <p className="text-xs font-medium text-muted">{siteConfig.hours}</p>
               </address>
             </div>
             <ul className="flex gap-4" aria-label="Media sosial">
@@ -42,6 +43,8 @@ export function Footer() {
                     <a
                       href={href}
                       aria-label={label}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex size-[50px] items-center justify-center rounded-lg bg-primary text-ink transition-colors hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2"
                     >
                       <Icon className="size-5" aria-hidden />

@@ -66,7 +66,7 @@ export function HomeHero() {
                   <Link
                     to="/article"
                     search={{ q: term }}
-                    className="flex min-h-11 items-center justify-center rounded-lg bg-primary/10 px-4 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:min-h-[60px] sm:px-9 sm:text-base"
+                    className="flex min-h-11 items-center justify-center rounded-lg bg-primary/10 px-4 text-xs font-semibold text-primary-700 transition-colors hover:bg-primary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:min-h-[60px] sm:px-9 sm:text-base"
                   >
                     {term}
                   </Link>

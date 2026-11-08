@@ -10,6 +10,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { TopProgressBar } from "@/components/ui/TopProgressBar";
 import { siteConfig } from "@/config/site";
 import "@/globals.css";
 
@@ -25,6 +26,11 @@ export const Route = createRootRoute({
       { property: "og:description", content: siteConfig.description },
       { property: "og:locale", content: "id_ID" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/images/bg-hero-new.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: `${siteConfig.name} | Informasi Publik Desa` },
+      { name: "twitter:description", content: siteConfig.description },
+      { name: "twitter:image", content: "/images/bg-hero-new.jpg" },
     ],
     links: [
       { rel: "icon", href: "/favicon.ico" },
@@ -50,6 +56,7 @@ function RootDocument({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body className="font-sans">
+        <TopProgressBar />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-3 focus:font-semibold focus:text-ink"

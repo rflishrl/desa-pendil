@@ -26,15 +26,31 @@ export const Route = createFileRoute("/article/$id")({
     const related = all.filter((a) => a.id !== article.id).slice(0, 3);
     return { article, related };
   },
-  head: ({ loaderData }) => ({
-    meta: [
-      {
-        title: loaderData?.article
-          ? `${loaderData.article.title} - Desa Pendil`
-          : "Berita tidak ditemukan - Desa Pendil",
-      },
-    ],
-  }),
+  head: ({ loaderData }) => {
+    const article = loaderData?.article;
+    const title = article
+      ? `${article.title} - Desa Pendil`
+      : "Berita tidak ditemukan - Desa Pendil";
+    const description = article?.content
+      ? article.content.slice(0, 155).replace(/\s+/g, " ").trim()
+      : "Kumpulan berita dan informasi terbaru dari Desa Pendil.";
+    const image = article?.image ?? "/images/dummy-news.jpg";
+
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "article" },
+        { property: "og:image", content: image },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: image },
+      ],
+    };
+  },
   notFoundComponent: ArticleNotFound,
   component: ArticleDetailPage,
 });

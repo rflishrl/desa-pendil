@@ -6,6 +6,7 @@ export const siteConfig = {
     "Website resmi Desa Pendil, Kecamatan Banyuanyar, Kabupaten Probolinggo. Berita, layanan publik, dan profil desa.",
   address:
     "Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur, Indonesia.",
+  hours: "Senin - Jumat: 08.00 - 15.00 WIB",
   copyright: "Desa Pendil",
 } as const;
 
@@ -41,10 +42,10 @@ export const footerGroups: { title: string; links: NavItem[] }[] = [
 ];
 
 export const socialLinks = [
-  { label: "Facebook", href: "#", icon: "facebook" },
-  { label: "X (Twitter)", href: "#", icon: "x" },
-  { label: "Instagram", href: "#", icon: "instagram" },
-  { label: "YouTube", href: "#", icon: "youtube" },
+  { label: "Facebook Desa Pendil", href: "https://facebook.com", icon: "facebook" },
+  { label: "X (Twitter) Desa Pendil", href: "https://x.com", icon: "x" },
+  { label: "Instagram Desa Pendil", href: "https://instagram.com", icon: "instagram" },
+  { label: "YouTube Desa Pendil", href: "https://youtube.com", icon: "youtube" },
 ] as const;
 
 export const popularSearches = ["Desa Pendil", "Tari Remo", "Reog"];

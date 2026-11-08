@@ -17,16 +17,17 @@ import type {
  * project; replace them (or swap this file for API calls) when real data exists.
  */
 
-const LOREM =
-  "Lörem ipsum låbel minidator, tesade bese telestat. Krosat. Sysäst man. Latret gektig. Prelabel viligen, i vidat misk om dertad. Hojat diprerat efterföljarskap att parade. Dekapp nede om suska. Bende digur: en megagens. Fanuning mikrokade. Berat spepås spektigt, spesa respektive nilaning. Pseudolig trekaskade. Arade";
-
 export const villageStats: Stat[] = [
   { icon: MdFamilyRestroom, title: "1.234 Keluarga", description: "Total KK" },
   { icon: MdHealthAndSafety, title: "12.345 Jiwa", description: "Total Penduduk" },
   { icon: MdOutlineLocationCity, title: "120 KM", description: "Luas Desa" },
 ];
 
-export const hamlets = ["Dusun A", "Dusun B", "Dusun C"] as const;
+export const hamlets = [
+  "Dusun Krajan",
+  "Dusun Pendil Tengah",
+  "Dusun Pendil Selatan",
+] as const;
 
 export const officials: Official[] = [
   { name: "H. Machfuds", position: "Kepala Desa" },
@@ -44,19 +45,19 @@ export const features: Feature[] = [
     icon: MdFamilyRestroom,
     title: "Desa Adiwiyata",
     description:
-      "Desa yang peduli dan berbudaya lingkungan. Deskripsi ini masih contoh.",
+      "Komitmen pelestarian lingkungan hidup dan ruang terbuka hijau berbasis partisipasi aktif masyarakat.",
   },
   {
     icon: MdHealthAndSafety,
-    title: "Keunggulan 2",
+    title: "Pelayanan Publik Cepat",
     description:
-      "Desa yang peduli dan berbudaya lingkungan. Deskripsi ini masih contoh.",
+      "Kemudahan layanan administrasi kependudukan dan surat pengantar desa secara terpadu dan transparan.",
   },
   {
     icon: MdOutlineLocationCity,
-    title: "Keunggulan 3",
+    title: "Sentra Pertanian Mandiri",
     description:
-      "Desa yang peduli dan berbudaya lingkungan. Deskripsi ini masih contoh.",
+      "Pengembangan komoditas pertanian unggulan lokal dengan sistem irigasi terawat dan kelompok tani berdaya.",
   },
 ];
 
@@ -77,13 +78,13 @@ export const cultures: CultureItem[] = [
     title: "Ludruk",
     image: "/images/dummy-culture.jpg",
     description:
-      "Ludruk adalah suatu kesenian drama tradisional dari Jawa Timur. Ludruk merupakan suatu drama tradisional...",
+      "Ludruk adalah kesenian teater rakyat tradisional Jawa Timur yang menampilkan drama kehidupan sehari-hari masyarakat dengan balutan humor, pesan moral, dan iringan gamelan yang khas.",
   },
 ];
 
 export const agenda: AgendaItem[] = [1, 2, 3, 4].map((id) => ({
   id,
-  category: "Kategori",
+  category: "Kegiatan Desa",
   title: "Peringatan Hari Jadi Desa Pendil ke-120",
   time: "09:00-13:00 WIB",
   status: "Belum Dimulai",
@@ -92,12 +93,14 @@ export const agenda: AgendaItem[] = [1, 2, 3, 4].map((id) => ({
 export const leader = {
   name: "H. Machfuds",
   image: "/images/image-leader.jpg",
-  speech: LOREM,
+  speech:
+    "Selamat datang di website resmi Desa Pendil, Kecamatan Banyuanyar, Kabupaten Probolinggo. Portal ini hadir sebagai wujud keterbukaan informasi publik dan komitmen kami dalam memberikan pelayanan terbaik, transparan, dan akuntabel bagi seluruh warga. Kami mengajak seluruh elemen masyarakat untuk bersama-sama membangun desa yang mandiri, sejahtera, dan berbudaya.",
 };
 
 export const villageOrigin = {
   image: "/images/image-village.jpg",
-  text: LOREM,
+  text:
+    "Desa Pendil merupakan salah satu desa yang terletak di Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur. Memiliki hamparan lahan pertanian yang subur serta masyarakat yang menjunjung tinggi semangat gotong royong dan tradisi leluhur. Nama Pendil sarat akan nilai historis kearifan lokal yang melambangkan wadah kebersamaan warga dalam menjaga kerukunan, kelestarian lingkungan, dan kemajuan desa dari generasi ke generasi.",
 };
 
 export const galleryImages: GalleryImage[] = [
