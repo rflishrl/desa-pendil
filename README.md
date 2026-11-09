@@ -2,23 +2,23 @@
 
 Official public website for Desa Pendil, located in Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur, Indonesia. The platform provides public information, village administrative profiles, news updates, local demographic records, and community activity galleries.
 
-Built with **TanStack Start**, **TanStack Router**, **React 19**, **Vite 8**, **Tailwind CSS**, and powered by the **Bun** runtime.
+Built with **TanStack Start**, **TanStack Router**, **React 19**, **Vite 8**, **Nitro**, **Tailwind CSS**, and powered by the **Bun** runtime.
 
-News and gallery entries are dynamically sourced from the [desa-pendil-backend](https://github.com/rflishrl/desa-pendil-backend) service. All other informational sections are statically maintained within this repository with offline fallbacks.
+News and gallery entries are dynamically sourced from the [desa-pendil-backend](https://github.com/rflishrl/desa-pendil-backend) service running on port 4000. All other informational sections are statically maintained within this repository with offline fallbacks.
 
 ---
 
 ## Tech Stack
 
-- **Framework**: TanStack Start (Full-stack SSR)
-- **Routing**: TanStack Router (File-based routing)
-- **Bundler & Build Tool**: Vite 8
+- **Framework**: TanStack Start 1.169 (Full-stack SSR with Nitro)
+- **Routing**: TanStack Router 1.170 (100% type-safe file-based routing)
+- **Bundler & Build Tool**: Vite 8.3
 - **Runtime & Package Manager**: Bun 1.4+
 - **UI Library**: React 19
 - **Styling**: Tailwind CSS 3.4
 - **Language**: TypeScript 5.9 (Strict mode)
 - **Validation**: Zod 4
-- **Linter & Formatter**: Biome 2.6
+- **Code Hygiene**: Biome 2.6 (Linter & Formatter)
 - **Icons**: React Icons (Heroicons, Phosphor Icons, FontAwesome)
 
 ---
@@ -40,6 +40,10 @@ bun install
 Copy the example environment file:
 
 ```bash
+# Windows
+copy .env.example .env.local
+
+# macOS / Linux
 cp .env.example .env.local
 ```
 
@@ -57,14 +61,14 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 | Command | Action |
 | :--- | :--- |
-| `bun dev` | Starts the local Vite development server |
-| `bun run build` | Compiles client and SSR production bundles |
+| `bun dev` | Starts local Vite development server on port 5173 |
+| `bun run build` | Compiles client and Nitro SSR production bundles into `.output` |
 | `bun run preview` | Previews the production build locally |
 | `bun run start` | Alias for `bun run preview` |
-| `bun run lint` | Runs Biome check to validate code quality and formatting (`biome check .`) |
-| `bun run format` | Formats codebase files in place (`biome format --write .`) |
-| `bun run check` | Applies safe linter and formatter fixes (`biome check --write .`) |
 | `bun run typecheck` | Validates TypeScript types with `tsc --noEmit` |
+| `bun run lint` | Runs Biome to check code quality and formatting (`biome check .`) |
+| `bun run check` | Applies safe Biome linter and formatter autofixes (`biome check --write .`) |
+| `bun run format` | Formats all files with Biome (`biome format --write .`) |
 
 ---
 
@@ -72,7 +76,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 | Variable | Description | Requirement |
 | :--- | :--- | :--- |
-| `API_BASE_URL` | Base URL of the backend API without a trailing slash (e.g. `http://localhost:4000/api` or production endpoint) | Required in production |
+| `API_BASE_URL` | Base URL of the backend API without trailing slash (e.g. `http://localhost:4000/api` or production endpoint) | Required in production |
 | `REVALIDATE_SECRET` | Shared secret token for on-demand cache revalidation at `POST /api/revalidate` | Optional (Required for webhook revalidation) |
 | `VITE_SITE_URL` | Canonical public URL used for Open Graph metadata, `sitemap.xml`, and `robots.txt` (defaults to `https://desapendil.id`) | Optional |
 
