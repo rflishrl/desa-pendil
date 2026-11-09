@@ -1,4 +1,4 @@
-# Desa Pendil Website
+# Desa Pendil Landing Page
 
 Official public website for Desa Pendil, located in Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur, Indonesia. The platform provides public information, village administrative profiles, news updates, local demographic records, and community activity galleries.
 
