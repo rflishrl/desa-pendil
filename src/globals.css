@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: "Montserrat";
   src: url("./fonts/montserrat-latin-wght-normal.woff2") format("woff2");
@@ -43,9 +45,45 @@
   --font-work-sans: "Work Sans", sans-serif;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+ * Design tokens taken from the Figma file "Web Desa":
+ * primary #F0A400, Primary-15 #FDF1D9, bg light #F8F8F8, card #FDFDFD,
+ * card shadow 0 2 16 rgba(0,0,0,.04), Montserrat, hero gradient 227deg.
+ */
+@theme {
+  --color-primary-50: #fff9ec;
+  --color-primary-100: #fdf1d9;
+  --color-primary: #f0a400;
+  --color-primary-300: #f6c866;
+  --color-primary-400: #f3b633;
+  --color-primary-500: #f0a400;
+  --color-primary-600: #d18f00;
+  --color-primary-700: #8f5f00;
+
+  --color-ink: #221c1c;
+  --color-muted: #717171;
+  --color-body: #3e3e3e;
+  --color-canvas: #f8f8f8;
+  --color-surface: #fdfdfd;
+
+  --shadow-card: 0px 2px 16px 0px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0px 6px 24px 0px rgba(0, 0, 0, 0.08);
+
+  --background-image-hero-overlay: linear-gradient(
+    227deg,
+    rgba(0, 20, 38, 0.8) 0%,
+    rgba(102, 70, 1, 0.8) 89%
+  );
+}
+
+@theme inline {
+  --font-sans:
+    var(--font-montserrat), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-logo:
+    var(--font-work-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
 
 @layer base {
   html {

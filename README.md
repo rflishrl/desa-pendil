@@ -15,8 +15,9 @@ News and gallery entries are dynamically sourced from the [desa-pendil-backend](
 - **Bundler & Build Tool**: Vite 8.3
 - **Runtime & Package Manager**: Bun 1.4+
 - **UI Library**: React 19
-- **Styling**: Tailwind CSS 3.4
+- **Styling**: Tailwind CSS 4 (via `@tailwindcss/vite`)
 - **Language**: TypeScript 5.9 (Strict mode)
+- **Testing**: Bun Test (`bun:test`)
 - **Validation**: Zod 4
 - **Code Hygiene**: Biome 2.6 (Linter & Formatter)
 - **Icons**: React Icons (Heroicons, Phosphor Icons, FontAwesome)
@@ -69,6 +70,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 | `bun run lint` | Runs Biome to check code quality and formatting (`biome check .`) |
 | `bun run check` | Applies safe Biome linter and formatter autofixes (`biome check --write .`) |
 | `bun run format` | Formats all files with Biome (`biome format --write .`) |
+| `bun test` | Runs unit and media validation tests with Bun test runner |
 
 ---
 
@@ -140,7 +142,7 @@ src/
   routes/         TanStack Router file-based route definitions
   sections/       Composed section components used across pages
   types/          TypeScript interface contracts
-  globals.css     Tailwind layers, font declarations, and print styles
+  globals.css     Tailwind v4 `@theme` design tokens, font declarations, and print styles
   router.tsx      Router factory and TanStack Router registration
   routeTree.gen.ts Generated route tree (maintained by router plugin)
 ```
