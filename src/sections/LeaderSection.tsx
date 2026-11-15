@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { leader } from "@/data/village";
 
 export function LeaderSection() {
@@ -7,13 +8,12 @@ export function LeaderSection() {
       <Container>
         <div className="grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-[42px]">
           <div className="relative mx-auto aspect-[592/537] w-full overflow-hidden rounded-xl bg-canvas md:rounded-3xl">
-            <img
+            <MediaImage
               src={leader.image}
+              variant="full"
               alt={`Kepala Desa ${leader.name}`}
               width={592}
               height={537}
-              loading="lazy"
-              decoding="async"
               className="h-full w-full object-cover"
             />
           </div>

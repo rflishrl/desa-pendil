@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Container } from "@/components/ui/Container";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { PageHero } from "@/components/ui/PageHero";
 import { villageOrigin } from "@/data/village";
 import { CultureSection } from "@/sections/CultureSection";
@@ -33,21 +34,22 @@ function ProfilePage() {
       >
         <Container size="wide">
           <div className="relative isolate overflow-hidden rounded-3xl px-6 py-12 shadow-[0_8px_30px_rgba(0,0,0,0.1)] lg:px-12 lg:py-[60px]">
-            <img
-              src="/images/bg-event.png"
+            <MediaImage
+              src="/images/bg-event.webp"
               alt=""
+              width={1920}
+              height={1920}
               aria-hidden="true"
-              loading="lazy"
-              decoding="async"
               className="absolute inset-0 -z-10 h-full w-full object-cover"
             />
             <div className="mx-auto flex max-w-[1238px] flex-col gap-8 lg:gap-[42px]">
               <div className="relative h-[251px] overflow-hidden rounded-2xl bg-canvas sm:h-[360px] lg:h-[537px]">
-                <img
+                <MediaImage
                   src={villageOrigin.image}
+                  variant="full"
                   alt="Pemandangan Desa Pendil"
-                  loading="lazy"
-                  decoding="async"
+                  width={1600}
+                  height={1200}
                   className="h-full w-full object-cover"
                 />
               </div>

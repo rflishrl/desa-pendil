@@ -23,6 +23,10 @@ function toArticle(dto: NewsItemDto): Article {
     title: dto.title,
     date: dto.publishedAt ?? dto.createdAt,
     image: resolveImageSrc(dto.thumbnail),
+    thumbImage: resolveImageSrc(dto.thumbnail, {
+      thumbUrl: dto.thumbUrl,
+      variant: "thumb",
+    }),
     content: dto.content ?? undefined,
     author: dto.author ?? undefined,
   };
@@ -97,7 +101,14 @@ export async function getGalleryImages(): Promise<GalleryImage[] | null> {
       (item) => {
         const parsed = galleryItemSchema.safeParse(item);
         return parsed.success
-          ? { src: resolveImageSrc(parsed.data.url), alt: parsed.data.alt }
+          ? {
+              src: resolveImageSrc(parsed.data.url),
+              thumbSrc: resolveImageSrc(parsed.data.url, {
+                thumbUrl: parsed.data.thumbUrl,
+                variant: "thumb",
+              }),
+              alt: parsed.data.alt,
+            }
           : null;
       },
       "gallery",

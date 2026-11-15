@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { PiArrowUpRight } from "react-icons/pi";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { formatLongDate } from "@/lib/format";
 import type { Article } from "@/types";
 
@@ -11,13 +12,13 @@ export function ArticleCard({ article, href }: { article: Article; href?: string
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card transition-shadow duration-200 hover:shadow-card-hover">
       <div className="relative h-[177px] shrink-0 bg-canvas sm:h-[254px]">
-        <img
+        <MediaImage
           src={article.image}
+          thumbSrc={article.thumbImage}
+          variant="thumb"
           alt=""
           width={400}
           height={254}
-          loading="lazy"
-          decoding="async"
           className="h-full w-full rounded-2xl object-cover"
         />
       </div>

@@ -7,28 +7,32 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { TopProgressBar } from "@/components/ui/TopProgressBar";
 import { siteConfig } from "@/config/site";
+import { getSiteUrl } from "@/lib/env";
 import "@/globals.css";
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#F0A400" },
-      { title: `${siteConfig.name} | Informasi Publik Desa` },
-      { name: "description", content: siteConfig.description },
-      { property: "og:title", content: siteConfig.name },
-      { property: "og:description", content: siteConfig.description },
-      { property: "og:locale", content: "id_ID" },
-      { property: "og:type", content: "website" },
-      { property: "og:image", content: "/images/bg-hero-new.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: `${siteConfig.name} | Informasi Publik Desa` },
-      { name: "twitter:description", content: siteConfig.description },
-      { name: "twitter:image", content: "/images/bg-hero-new.jpg" },
-    ],
-    links: [{ rel: "icon", href: "/favicon.ico" }],
-  }),
+  head: () => {
+    const defaultOgImage = new URL("/images/bg-hero-new.jpg", getSiteUrl()).toString();
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "theme-color", content: "#F0A400" },
+        { title: `${siteConfig.name} | Informasi Publik Desa` },
+        { name: "description", content: siteConfig.description },
+        { property: "og:title", content: siteConfig.name },
+        { property: "og:description", content: siteConfig.description },
+        { property: "og:locale", content: "id_ID" },
+        { property: "og:type", content: "website" },
+        { property: "og:image", content: defaultOgImage },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: `${siteConfig.name} | Informasi Publik Desa` },
+        { name: "twitter:description", content: siteConfig.description },
+        { name: "twitter:image", content: defaultOgImage },
+      ],
+      links: [{ rel: "icon", href: "/favicon.ico" }],
+    };
+  },
   component: RootComponent,
   notFoundComponent: RootNotFound,
   errorComponent: RootError,

@@ -1,4 +1,11 @@
 import { z } from "zod";
+import { isAllowedMediaUrl } from "@/lib/media-url";
+
+const allowedMediaUrlSchema = z
+  .string()
+  .refine((value) => value === "" || isAllowedMediaUrl(value), {
+    message: "Host URL media tidak diizinkan.",
+  });
 
 /*
  * Response contracts of the backend (desa-pendil-backend). Only the fields the site
@@ -10,7 +17,8 @@ export const newsItemSchema = z.object({
   title: z.string().min(1),
   publishedAt: z.string().nullish(),
   createdAt: z.string(),
-  thumbnail: z.string().nullish(),
+  thumbnail: allowedMediaUrlSchema.nullish(),
+  thumbUrl: allowedMediaUrlSchema.nullish(),
   content: z.string().nullish(),
   author: z.string().nullish(),
 });
@@ -23,7 +31,8 @@ export const newsListSchema = z.object({
 export const newsDetailSchema = z.object({ success: z.literal(true), data: newsItemSchema });
 
 export const galleryItemSchema = z.object({
-  url: z.string().nullish(),
+  url: allowedMediaUrlSchema.nullish(),
+  thumbUrl: allowedMediaUrlSchema.nullish(),
   alt: z.string().min(1),
 });
 export const galleryListSchema = z.object({

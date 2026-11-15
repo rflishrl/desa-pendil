@@ -1,4 +1,5 @@
 import { CardRail } from "@/components/ui/CardRail";
+import { MediaImage } from "@/components/ui/MediaImage";
 import type { GalleryImage } from "@/types";
 
 interface GalleryGridProps {
@@ -14,13 +15,13 @@ export function GalleryGrid({ images, rail = false }: GalleryGridProps) {
       key={`${image.src}-${index}`}
       className="relative mx-auto aspect-[278/368] w-full max-w-[278px] overflow-hidden rounded-2xl bg-canvas shadow-card sm:aspect-[397/525] sm:max-w-none"
     >
-      <img
+      <MediaImage
         src={image.src}
+        thumbSrc={image.thumbSrc}
+        variant="thumb"
         alt={image.alt}
         width={397}
         height={525}
-        loading="lazy"
-        decoding="async"
         className="h-full w-full object-cover transition-transform duration-300 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
       />
     </li>
