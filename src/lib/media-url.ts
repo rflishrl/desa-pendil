@@ -1,7 +1,5 @@
 export const FALLBACK_NEWS_IMAGE = "/images/dummy-news.jpg";
 
-const BLOB_HOST_SUFFIX = ".public.blob.vercel-storage.com";
-
 export type MediaVariant = "thumb" | "full";
 
 export interface ResolveMediaOptions {
@@ -47,10 +45,6 @@ export function getConfiguredMediaOrigin(explicitDomain?: string): string | null
   }
 }
 
-function isLegacyBlobUrl(url: URL): boolean {
-  return url.protocol === "https:" && url.hostname.endsWith(BLOB_HOST_SUFFIX);
-}
-
 function isLocalDevApiAsset(url: URL): boolean {
   if (typeof process !== "undefined" && process.env.NODE_ENV === "production") {
     return false;
@@ -62,7 +56,6 @@ function isLocalDevApiAsset(url: URL): boolean {
  * Strict allowlist for media URLs rendered in the frontend:
  * - Same-origin static assets starting with single `/` (excluding `//`)
  * - Exact origin configured via `VITE_MEDIA_PUBLIC_DOMAIN`
- * - Legacy Vercel Blob hosts (`*.public.blob.vercel-storage.com`) during cutover transition
  * - Local API preview (`http://localhost:4000/...`) outside production
  */
 export function isAllowedMediaUrl(src: string, explicitDomain?: string): boolean {
@@ -85,10 +78,6 @@ export function isAllowedMediaUrl(src: string, explicitDomain?: string): boolean
     return true;
   }
 
-  if (isLegacyBlobUrl(parsed)) {
-    return true;
-  }
-
   return isLocalDevApiAsset(parsed);
 }
 
@@ -100,7 +89,7 @@ function isConfiguredR2Url(url: URL, explicitDomain?: string): boolean {
 /**
  * Deterministically converts an R2 full image URL (`<key>.webp`) to its thumbnail
  * sibling (`<key>-thumb.webp`). Only transforms URLs on the exact configured R2 origin;
- * legacy Blob and local static URLs are returned unchanged.
+ * non-R2 and local static URLs are returned unchanged.
  */
 export function deriveThumbUrl(src: string, explicitDomain?: string): string {
   const value = src.trim();

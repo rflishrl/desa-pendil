@@ -15,12 +15,9 @@ describe("media-url (desa-pendil)", () => {
     delete process.env.VITE_MEDIA_PUBLIC_DOMAIN;
   });
 
-  it("allows configured media domain, legacy blob hosts, and local assets only", () => {
+  it("allows configured media domain and local assets only", () => {
     expect(isAllowedMediaUrl(`${TEST_DOMAIN}/${UUID}.webp`, TEST_DOMAIN)).toBe(true);
     expect(isAllowedMediaUrl(`${TEST_DOMAIN}/dev/${UUID}.webp`, TEST_DOMAIN)).toBe(true);
-    expect(
-      isAllowedMediaUrl("https://abc.public.blob.vercel-storage.com/photo.jpg", TEST_DOMAIN),
-    ).toBe(true);
     expect(isAllowedMediaUrl("/images/dummy-news.jpg", TEST_DOMAIN)).toBe(true);
 
     expect(isAllowedMediaUrl("https://evil.example.com/photo.webp", TEST_DOMAIN)).toBe(false);
@@ -38,9 +35,9 @@ describe("media-url (desa-pendil)", () => {
     expect(deriveThumbUrl(`${TEST_DOMAIN}/${UUID}-thumb.webp`, TEST_DOMAIN)).toBe(
       `${TEST_DOMAIN}/${UUID}-thumb.webp`,
     );
-    expect(
-      deriveThumbUrl("https://abc.public.blob.vercel-storage.com/photo.webp", TEST_DOMAIN),
-    ).toBe("https://abc.public.blob.vercel-storage.com/photo.webp");
+    expect(deriveThumbUrl("https://other.example.com/photo.webp", TEST_DOMAIN)).toBe(
+      "https://other.example.com/photo.webp",
+    );
     expect(deriveThumbUrl("/images/dummy-news.jpg", TEST_DOMAIN)).toBe("/images/dummy-news.jpg");
   });
 
@@ -85,8 +82,8 @@ describe("media-url (desa-pendil)", () => {
 
     expect(
       galleryItemSchema.safeParse({
-        url: "https://abc.public.blob.vercel-storage.com/old.jpg",
-        alt: "Foto lama",
+        url: `${TEST_DOMAIN}/${UUID}.webp`,
+        alt: "Foto galeri",
       }).success,
     ).toBe(true);
   });
