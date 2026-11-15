@@ -6,6 +6,7 @@ export interface Article {
   /** ISO date string */
   date: string;
   image: string;
+  thumbImage?: string;
   /** Body text, when the API provides it. */
   content?: string;
   author?: string;
@@ -45,6 +46,7 @@ export interface AgendaItem {
 
 export interface GalleryImage {
   src: string;
+  thumbSrc?: string;
   alt: string;
 }
 

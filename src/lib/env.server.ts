@@ -1,4 +1,7 @@
 import { z } from "zod";
+import { getSiteUrl } from "./env";
+
+export { getSiteUrl };
 
 const serverSchema = z.object({
   API_BASE_URL: z
@@ -31,16 +34,4 @@ export function getServerEnv() {
   }
   cached = parsed.data;
   return cached;
-}
-
-export function getSiteUrl(): string {
-  if (typeof window !== "undefined") {
-    return window.location.origin;
-  }
-  return (
-    process.env.SITE_URL ??
-    process.env.VITE_SITE_URL ??
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    "https://desapendil.id"
-  );
 }

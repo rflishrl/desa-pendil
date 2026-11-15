@@ -5,6 +5,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { CardRail } from "@/components/ui/CardRail";
 import { Container } from "@/components/ui/Container";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { PageHero } from "@/components/ui/PageHero";
 import { Panel } from "@/components/ui/Panel";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -55,12 +56,12 @@ function ServicesPage() {
         <section id="data-desa" aria-labelledby="data-desa-title">
           <Container size="wide">
             <div className="relative isolate overflow-hidden rounded-2xl px-6 py-12 shadow-card lg:px-12 lg:py-[60px]">
-              <img
-                src="/images/bg-event.png"
+              <MediaImage
+                src="/images/bg-event.webp"
                 alt=""
+                width={1920}
+                height={1920}
                 aria-hidden="true"
-                loading="lazy"
-                decoding="async"
                 className="absolute inset-0 -z-10 h-full w-full object-cover"
               />
               <div className="mx-auto max-w-[1248px] space-y-12 lg:space-y-6">

@@ -5,11 +5,13 @@ import { ArticleCard } from "@/components/cards/ArticleCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { PageHero } from "@/components/ui/PageHero";
 import { Panel } from "@/components/ui/Panel";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ShareButton } from "@/components/ui/ShareButton";
 import { getArticleServerFn, getArticlesServerFn } from "@/lib/api/functions";
+import { getSiteUrl } from "@/lib/env";
 import { formatLongDate } from "@/lib/format";
 
 export const Route = createFileRoute("/article/$id")({
@@ -34,7 +36,10 @@ export const Route = createFileRoute("/article/$id")({
     const description = article?.content
       ? article.content.slice(0, 155).replace(/\s+/g, " ").trim()
       : "Kumpulan berita dan informasi terbaru dari Desa Pendil.";
-    const image = article?.image ?? "/images/dummy-news.jpg";
+    const rawImage = article?.image ?? "/images/dummy-news.jpg";
+    const image = /^https?:\/\//i.test(rawImage)
+      ? rawImage
+      : new URL(rawImage, getSiteUrl()).toString();
 
     return {
       meta: [
@@ -112,12 +117,13 @@ function ArticleDetailPage() {
           <Container size="wide">
             <Panel className="flex flex-col items-center gap-12 lg:gap-20 xl:px-[125px]">
               <div className="relative aspect-[1239/560] w-full overflow-hidden rounded-2xl bg-canvas">
-                <img
+                <MediaImage
                   src={article.image}
+                  variant="full"
+                  priority="high"
                   alt=""
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
+                  width={1239}
+                  height={560}
                   className="h-full w-full object-cover"
                 />
               </div>

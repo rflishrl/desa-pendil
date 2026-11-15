@@ -1,3 +1,4 @@
+import { MediaImage } from "@/components/ui/MediaImage";
 import type { Official } from "@/types";
 
 /** Figma "PerangkatDesa": tall photo (291x389), text panel with padding 36. */
@@ -5,13 +6,12 @@ export function OfficialCard({ official }: { official: Official }) {
   return (
     <figure className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card">
       <div className="relative aspect-square md:aspect-[291/389] bg-canvas">
-        <img
+        <MediaImage
           src={official.image}
+          variant="thumb"
           alt={`Foto ${official.name}`}
           width={291}
           height={389}
-          loading="lazy"
-          decoding="async"
           className="h-full w-full rounded-2xl object-cover"
         />
       </div>

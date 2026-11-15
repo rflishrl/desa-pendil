@@ -2,6 +2,7 @@ import { PiArrowUpRight } from "react-icons/pi";
 import { AgendaCard } from "@/components/cards/AgendaCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { MediaImage } from "@/components/ui/MediaImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { agenda } from "@/data/village";
 import { formatLongDate } from "@/lib/format";
@@ -13,12 +14,12 @@ export function TodayAgendaSection() {
       aria-labelledby="agenda-title"
       className="relative isolate my-8 overflow-hidden py-12 lg:my-[70px] lg:py-[60px]"
     >
-      <img
-        src="/images/bg-event.png"
+      <MediaImage
+        src="/images/bg-event.webp"
         alt=""
+        width={1920}
+        height={1920}
         aria-hidden="true"
-        loading="lazy"
-        decoding="async"
         className="absolute inset-0 -z-10 h-full w-full object-cover"
       />
       <Container>

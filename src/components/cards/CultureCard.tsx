@@ -1,3 +1,4 @@
+import { MediaImage } from "@/components/ui/MediaImage";
 import type { CultureItem } from "@/types";
 
 /** Figma "CardKesenian": 254px photo, text panel padding 36, 16/22 body text. */
@@ -5,13 +6,12 @@ export function CultureCard({ item }: { item: CultureItem }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card">
       <div className="relative h-[188px] shrink-0 bg-canvas sm:h-[254px]">
-        <img
+        <MediaImage
           src={item.image}
+          variant="thumb"
           alt={`Kesenian ${item.title}`}
           width={400}
           height={254}
-          loading="lazy"
-          decoding="async"
           className="h-full w-full rounded-2xl object-cover"
         />
       </div>
