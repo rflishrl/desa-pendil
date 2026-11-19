@@ -2,7 +2,7 @@
 
 Official public website for Desa Pendil, located in Kecamatan Banyuanyar, Kabupaten Probolinggo, Jawa Timur, Indonesia. The platform provides public information, village administrative profiles, news updates, local demographic records, and community activity galleries.
 
-Built with **TanStack Start**, **TanStack Router**, **React 19**, **Vite 8**, **Nitro**, **Tailwind CSS**, and powered by the **Bun** runtime.
+Built with **SvelteKit 3**, **Svelte 5 (Runes)**, **Vite 8**, **Tailwind CSS 4**, and **@sveltejs/adapter-vercel** (`nodejs24.x`), using **Bun** as the package manager.
 
 News and gallery entries are dynamically sourced from the [desa-pendil-backend](https://github.com/rflishrl/desa-pendil-backend) service running on port 4000. All other informational sections are statically maintained within this repository with offline fallbacks.
 
@@ -10,17 +10,17 @@ News and gallery entries are dynamically sourced from the [desa-pendil-backend](
 
 ## Tech Stack
 
-- **Framework**: TanStack Start 1.169 (Full-stack SSR with Nitro)
-- **Routing**: TanStack Router 1.170 (100% type-safe file-based routing)
-- **Bundler & Build Tool**: Vite 8.3
-- **Runtime & Package Manager**: Bun 1.4+
-- **UI Library**: React 19
-- **Styling**: Tailwind CSS 4 (via `@tailwindcss/vite`)
-- **Language**: TypeScript 5.9 (Strict mode)
-- **Testing**: Bun Test (`bun:test`)
+- **Framework**: SvelteKit 3 (`@sveltejs/kit` 3.2.x) + `@sveltejs/adapter-vercel` 7.x (`nodejs24.x`)
+- **UI**: Svelte 5 (Runes)
+- **Bundler**: Vite 8
+- **Package Manager**: Bun (`bun.lock`)
+- **Runtime (Production / Vercel)**: Node.js 24 LTS (`>= 22.17`)
+- **Styling**: Tailwind CSS 4 (`@tailwindcss/vite`)
+- **Language**: TypeScript 6 (Strict mode, `#lib` subpath imports)
 - **Validation**: Zod 4
-- **Code Hygiene**: Biome 2.6 (Linter & Formatter)
-- **Icons**: React Icons (Heroicons, Phosphor Icons, FontAwesome)
+- **Testing**: Vitest 5 + Playwright
+- **Code Hygiene**: ESLint + Prettier + `svelte-check`
+- **Icons**: `@lucide/svelte` + inline brand SVGs
 
 ---
 
@@ -28,7 +28,8 @@ News and gallery entries are dynamically sourced from the [desa-pendil-backend](
 
 ### Prerequisites
 
-You need [Bun](https://bun.sh) (version 1.0 or newer).
+- [Bun](https://bun.sh) (`>= 1.0`)
+- [Node.js](https://nodejs.org) (`>= 22.17`, Node 24 LTS recommended for parity with Vercel)
 
 ### 1. Install Dependencies
 
@@ -51,7 +52,7 @@ cp .env.example .env.local
 ### 3. Run Development Server
 
 ```bash
-bun dev
+bun run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
@@ -62,15 +63,14 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 | Command | Action |
 | :--- | :--- |
-| `bun dev` | Starts local Vite development server on port 5173 |
-| `bun run build` | Compiles client and Nitro SSR production bundles into `.output` |
+| `bun run dev` | Starts local Vite development server on port 5173 |
+| `bun run build` | Builds the SvelteKit production bundle via `@sveltejs/adapter-vercel` |
 | `bun run preview` | Previews the production build locally |
-| `bun run start` | Alias for `bun run preview` |
-| `bun run typecheck` | Validates TypeScript types with `tsc --noEmit` |
-| `bun run lint` | Runs Biome to check code quality and formatting (`biome check .`) |
-| `bun run check` | Applies safe Biome linter and formatter autofixes (`biome check --write .`) |
-| `bun run format` | Formats all files with Biome (`biome format --write .`) |
-| `bun test` | Runs unit and media validation tests with Bun test runner |
+| `bun run check` | Runs `svelte-kit sync` and `svelte-check` |
+| `bun run lint` | Runs Prettier check and ESLint |
+| `bun run format` | Formats all files with Prettier |
+| `bun run test` | Runs Vitest unit/integration tests |
+| `bun run test:e2e` | Runs Playwright end-to-end tests |
 
 ---
 
@@ -80,50 +80,42 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 | :--- | :--- | :--- |
 | `API_BASE_URL` | Base URL of the backend API without trailing slash (e.g. `http://localhost:4000/api` or production endpoint) | Required in production |
 | `REVALIDATE_SECRET` | Shared secret token for on-demand cache revalidation at `POST /api/revalidate` | Optional (Required for webhook revalidation) |
-| `VITE_SITE_URL` | Canonical public URL used for Open Graph metadata, `sitemap.xml`, and `robots.txt` (defaults to `https://desapendil.id`) | Optional |
+| `PUBLIC_MEDIA_PUBLIC_DOMAIN` | Public Cloudflare R2 custom domain for village media (e.g. `https://media-dp.raflisahrul.my.id`) | Optional |
+| `PUBLIC_SITE_URL` | Canonical public URL used for Open Graph metadata, `sitemap.xml`, and `robots.txt` (defaults to `https://desapendil.id`) | Optional |
 
-In development, `API_BASE_URL` defaults to `http://localhost:4000/api`. In production, builds validate this configuration and fail early if the endpoint is missing or malformed.
+In development, `API_BASE_URL` defaults to `http://localhost:4000/api`. In production, server loaders validate this configuration early.
+
+> **Vercel Deployment Note**: Set the project Node.js version to **24.x** in Vercel Project Settings (`Settings -> General -> Node.js Version`) and update `VITE_SITE_URL` / `VITE_MEDIA_PUBLIC_DOMAIN` to `PUBLIC_SITE_URL` / `PUBLIC_MEDIA_PUBLIC_DOMAIN`.
 
 ---
 
 ## Route Architecture
 
-All routes use TanStack Router file-based routing inside `src/routes/`:
+All routes use SvelteKit file-based routing inside `src/routes/`:
 
 | Route File | URL Path | Type | Purpose |
 | :--- | :--- | :--- | :--- |
-| `src/routes/__root.tsx` | Root shell | Layout | HTML document shell, head metadata, navbar, footer, and progress bar |
-| `src/routes/index.tsx` | `/` | Streaming SSR | Landing page: hero search, streaming latest news, village head speech, officials, and agenda |
-| `src/routes/article/index.tsx` | `/article` | Full SSR | News archive with search filter (`?q=`) and pagination (`?page=`) |
-| `src/routes/article/$id.tsx` | `/article/$id` | Full SSR | Article detail view with dynamic Open Graph tags and custom 404 guard |
-| `src/routes/services.tsx` | `/services` | Full SSR | Village public services, demographic data, and hamlet statistics |
-| `src/routes/profile.tsx` | `/profile` | Static SSR | Historical origin, administrative governance, village culture, and achievements |
-| `src/routes/gallery.tsx` | `/gallery` | Full SSR | Photo gallery with responsive grid, mobile swipe rail, and pagination |
-| `src/routes/robots[.]txt.ts` | `/robots.txt` | Server Route | Crawler directives (GET) |
-| `src/routes/sitemap[.]xml.ts` | `/sitemap.xml` | Server Route | Search engine sitemap XML (GET) |
-| `src/routes/api/revalidate.ts` | `/api/revalidate` | Server Route | Constant-time authorized webhook for cache invalidation (POST) |
+| `src/routes/+layout.svelte` | Root shell | Layout | Skip link, top progress bar, navbar, main landmark, footer |
+| `src/routes/+error.svelte` | Error / 404 | Error | Custom 404 and runtime error fallback |
+| `src/routes/+page.svelte` | `/` | Streaming SSR | Landing page: hero search, streamed latest news, village head speech, officials, and agenda |
+| `src/routes/article/+page.svelte` | `/article` | SSR | News archive with search filter (`?q=`) and pagination (`?page=`) |
+| `src/routes/article/[id]/+page.svelte` | `/article/:id` | SSR | Article detail view with dynamic Open Graph tags and 404 handling |
+| `src/routes/services/+page.svelte` | `/services` | SSR | Village public services, demographic data, hamlet statistics, and gallery preview |
+| `src/routes/profile/+page.svelte` | `/profile` | Prerendered | Historical origin, administrative governance, village culture, and achievements |
+| `src/routes/gallery/+page.svelte` | `/gallery` | SSR | Photo gallery with responsive grid, mobile swipe rail, and pagination |
+| `src/routes/robots.txt/+server.ts` | `/robots.txt` | Server Route | Crawler directives (`GET`) |
+| `src/routes/sitemap.xml/+server.ts` | `/sitemap.xml` | Server Route | Search engine sitemap XML (`GET`) |
+| `src/routes/api/revalidate/+server.ts` | `/api/revalidate` | Server Route | Constant-time authorized webhook for cache invalidation (`POST`) |
 
 ---
 
-## Data Fetching & Server Functions
+## Data Fetching & Resilience
 
-Backend communication is handled through typed server functions defined in `src/lib/api/functions.ts` via TanStack Start `createServerFn`:
+Backend communication is handled exclusively in server-only modules under `src/lib/server/api/`:
 
-- **Isomorphic Execution**: Data loaders run on the server during SSR and make lightweight RPC calls during client transitions.
-- **Resilience**: An 8-second request timeout (`AbortSignal.timeout(8000)`) is enforced. If an item contains unexpected shapes, it is safely logged and skipped rather than failing the entire page. When the backend is offline, the frontend degrades to informative empty states and static placeholders.
-- **Webhook Invalidation**: `POST /api/revalidate` uses constant-time token comparison (`timingSafeEqual`) to verify the secret before processing cache tags.
-
----
-
-## Web Standards & Accessibility
-
-- **Semantics**: Uses standard HTML5 landmark elements (`<header>`, `<nav>`, `<main>`, `<search>`, `<footer>`) with valid heading hierarchy.
-- **Keyboard Navigation**: Includes an accessible skip-to-content link targeting `<main tabIndex={-1}>` and visible focus outlines for all interactive controls.
-- **View Transitions**: Leverages the native browser View Transitions API for smooth cross-document page changes, respecting `prefers-reduced-motion`.
-- **Layout Stability & CLS**: All images define intrinsic dimensions and asynchronous decoding. The document shell sets `scrollbar-gutter: stable` to eliminate horizontal layout shifts.
-- **Mobile Ergonomics**: Horizontal card rails provide scroll affordance hints, touch-friendly tap targets (minimum 44px), and `overscroll-behavior-inline: contain`.
-- **Print Optimization**: Includes a dedicated `@media print` stylesheet that strips navigation overlays and formats content cleanly for physical printing by village residents.
-- **Self-Hosted Assets**: Montserrat and Work Sans fonts are locally bundled in WOFF2 format under `src/fonts/` with `font-display: swap`, eliminating third-party CDN tracking and external network failures.
+- **Server-only Secrets**: Private variables are read via `$app/env/private` (`src/env.ts` `defineEnvVars`); public values use `$app/env/public`.
+- **Resilience**: An 8-second request timeout (`AbortSignal.timeout(8000)`) is enforced. Malformed items are logged and skipped rather than breaking the page. When the backend is unreachable, the site degrades cleanly to empty states and local fallback media.
+- **Webhook Invalidation**: `POST /api/revalidate` uses SHA-256 + `crypto.timingSafeEqual` to verify the Bearer secret before accepting cache tags.
 
 ---
 
@@ -131,18 +123,18 @@ Backend communication is handled through typed server functions defined in `src/
 
 ```
 src/
-  components/
-    cards/        Domain cards (ArticleCard, OfficialCard, StatCard, AgendaCard, CultureCard)
-    layout/       Shared navigation bar and footer
-    ui/           Accessible UI primitives (Button, CardRail, Container, Panel, TopProgressBar)
-  config/         Site constants, navigation links, and operational hours
-  data/           Authentic local records, village statistics, and cultural information
-  fonts/          Locally hosted font files (SIL Open Font License)
-  lib/            Server functions, API client, environment validation, and utilities
-  routes/         TanStack Router file-based route definitions
-  sections/       Composed section components used across pages
-  types/          TypeScript interface contracts
-  globals.css     Tailwind v4 `@theme` design tokens, font declarations, and print styles
-  router.tsx      Router factory and TanStack Router registration
-  routeTree.gen.ts Generated route tree (maintained by router plugin)
+  app.html            Document shell, favicons, and base meta
+  app.d.ts            SvelteKit ambient types
+  env.ts              SvelteKit 3 defineEnvVars() declarations
+  fonts/              Self-hosted Montserrat & Work Sans WOFF2 fonts
+  styles/globals.css  Tailwind v4 @theme design tokens, fonts, and print styles
+  lib/
+    components/       Svelte 5 UI primitives, layout, domain cards, and sections
+    config/           Site constants, navigation links, and operational hours
+    data/             Static village records, demographics, and cultural items
+    server/           Server-only API client, env validation, and revalidate logic
+    types/            TypeScript interface contracts
+  routes/             SvelteKit 3 file-based routes and endpoints
+static/               Static assets (favicon, local fallback photos)
+test/                 Vitest unit tests & Playwright E2E specs
 ```

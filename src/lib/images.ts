@@ -1,14 +1,10 @@
-import { FALLBACK_NEWS_IMAGE, type ResolveMediaOptions, resolveMediaUrl } from "./media-url";
+import { FALLBACK_NEWS_IMAGE, type ResolveMediaOptions, resolveMediaUrl } from '#lib/media-url.js';
 
 export { FALLBACK_NEWS_IMAGE };
 
-/**
- * Resolves a safe image `src` against the allowed media hosts and local assets
- * so an unexpected URL from the API cannot break rendering.
- */
 export function resolveImageSrc(
-  src: string | null | undefined,
-  options?: ResolveMediaOptions,
+	src: string | null | undefined,
+	options?: ResolveMediaOptions
 ): string {
-  return resolveMediaUrl(src, options);
+	return resolveMediaUrl(src, options);
 }

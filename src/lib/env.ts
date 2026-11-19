@@ -1,11 +1,6 @@
+import { PUBLIC_SITE_URL } from '$app/env/public';
+
 export function getSiteUrl(): string {
-  if (typeof window !== "undefined") {
-    return window.location.origin;
-  }
-  return (
-    process.env.SITE_URL ??
-    process.env.VITE_SITE_URL ??
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    "https://desapendil.id"
-  );
+	const raw = PUBLIC_SITE_URL?.trim() || 'https://desapendil.id';
+	return raw.replace(/\/+$/, '');
 }
