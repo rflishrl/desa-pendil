@@ -85,7 +85,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 In development, `API_BASE_URL` defaults to `http://localhost:4000/api`. In production, server loaders validate this configuration early.
 
-> **Vercel Deployment Note**: Set the project Node.js version to **24.x** in Vercel Project Settings (`Settings -> General -> Node.js Version`) and update `VITE_SITE_URL` / `VITE_MEDIA_PUBLIC_DOMAIN` to `PUBLIC_SITE_URL` / `PUBLIC_MEDIA_PUBLIC_DOMAIN`.
+- **Vercel Deployment**: Set **Framework Preset** to `SvelteKit` (command overrides OFF) and **Node.js Version** to **24.x** in Vercel Project Settings (`Settings -> Build & Deployment`); `package.json` omits `engines.node` intentionally so Vercel does not trigger `Node.Js Version Override`. Ensure `PUBLIC_SITE_URL` and `PUBLIC_MEDIA_PUBLIC_DOMAIN` are configured cleanly (remove legacy `VITE_*`, `NEXT_PUBLIC_*`, and `BLOB_*` vars).
 
 ---
 
@@ -138,3 +138,12 @@ src/
 static/               Static assets (favicon, local fallback photos)
 test/                 Vitest unit tests & Playwright E2E specs
 ```
+
+---
+
+## Deployment to Vercel
+
+1. Set **Framework Preset** to **`SvelteKit`** with all command overrides (**Build Command**, **Output Directory**, **Install Command**, **Development Command**) **OFF** so Vercel auto-detects `bun.lock` and `.vercel/output`.
+2. Set **Node.js Version** to **`24.x`** in **Project Settings -> Build & Deployment** (`vite.config.ts` targets `nodejs24.x`, region `sin1`; `package.json` omits `engines.node` to avoid Vercel's `Node.Js Version Override` warning).
+3. Configure only the 4 active environment variables (`API_BASE_URL`, `REVALIDATE_SECRET`, `PUBLIC_SITE_URL`, `PUBLIC_MEDIA_PUBLIC_DOMAIN`). Since `PUBLIC_*` variables are inlined at build time, redeploy after changing them.
+4. *(Optional, Free Tier)* Add 1 Vercel Firewall WAF rate-limiting rule on `POST /api/revalidate` or `/article` if needed.
