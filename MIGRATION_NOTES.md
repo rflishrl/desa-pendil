@@ -150,3 +150,13 @@ Diambil menggunakan Playwright Chromium terhadap `desa-pendil` (TanStack Start `
 - **Tindak Lanjut Manual di Vercel**:
   - Ubah Node.js Version ke **24.x** di Vercel Project Settings.
   - Tambahkan/ganti env publik menjadi `PUBLIC_SITE_URL` dan `PUBLIC_MEDIA_PUBLIC_DOMAIN`.
+
+---
+
+## 10. Audit Rate Limiter & Anti-Spam (Prompt 2 — `feat/rate-limiter`)
+
+- **Inventarisasi Endpoint Tulis (`desa-pendil`)**:
+  - Tidak ada form kontak publik, halaman login/admin, atau endpoint upload R2 pada aplikasi frontend publik (`/` hanya memakai form pencarian baca-saja `GET /article`).
+  - Satu-satunya endpoint `POST` adalah `/api/revalidate` (webhook internal backend-ke-frontend) yang sudah dilindungi `Bearer REVALIDATE_SECRET` (`SHA-256` + `timingSafeEqual`) serta validasi Zod `4.6.7` (`tags` 1..10 item). Tidak ada UI/fitur baru yang ditambahkan agar paritas visual terjaga.
+  - Implementasi rate limiter berlapis `rl:desa-pendil` (`login`, `upload`) beserta honeypot dan Turnstile berada di repo `desa-pendil-backend`.
+- **Rekomendasi Vercel Hobby WAF (1 rule gratis)**: Dapat diarahkan ke `/article` (anti-scraping agresif) bila dibutuhkan di level CDN Vercel.

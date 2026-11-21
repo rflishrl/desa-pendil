@@ -36,6 +36,16 @@ test('all public routes render cleanly with SEO tags and 0 runtime errors', asyn
 	expect(sitemapRes.status()).toBe(200);
 	expect(await sitemapRes.text()).toContain('<urlset');
 
+	if (process.env.REQUIRE_LIVE_BACKEND === '1') {
+		const apiBase = (process.env.API_BASE_URL || 'http://localhost:4000/api').replace(/\/+$/, '');
+		const healthRes = await request.get(`${apiBase}/health`);
+		expect(healthRes.status()).toBe(200);
+		const newsRes = await request.get(`${apiBase}/news/v1?limit=5`);
+		expect(newsRes.status()).toBe(200);
+		const galleryRes = await request.get(`${apiBase}/gallery/v1?limit=5`);
+		expect(galleryRes.status()).toBe(200);
+	}
+
 	const routes = [
 		{ name: 'home', path: '/' },
 		{ name: 'article', path: '/article' },
